@@ -20,9 +20,9 @@ feature 'user signs up' do
   scenario 'invalid information is supplied' do
     visit new_user_registration_path
     click_button 'Sign Up'
-    expect_presence_error_for(:first_name)
-    expect_presence_error_for(:last_name)
-    expect_presence_error_for(:email)
+    expect_presence_error_for('user', :first_name)
+    expect_presence_error_for('user', :last_name)
+    expect_presence_error_for('user', :email)
     expect(page).to_not have_content 'Sign Out'
   end
 
@@ -36,8 +36,4 @@ feature 'user signs up' do
   end
 end
 
-def expect_presence_error_for(attribute)
-  within ".input.user_#{attribute.to_s}" do
-    have_content "can't be blank"
-  end
-end
+

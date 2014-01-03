@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 feature 'user places an order' do
-
+  let(:user) { FactoryGirl.create(:user) }
   scenario 'authenticated user places an order' do
-    visit root_path
-    click_on 'Sign In'
+    sign_in_as(user)
+    click_on 'Order Food'
+
   end
 
   scenario "unauthenticated user can't place an order"

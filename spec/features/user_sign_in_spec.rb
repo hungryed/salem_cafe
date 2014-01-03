@@ -4,12 +4,7 @@ feature 'user signs in' do
   let!(:user) { FactoryGirl.create(:user) }
 
   scenario 'existing users can relog in' do
-    visit root_path
-    click_link 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'user_password', with: user.password
-    click_button 'Sign In'
-
+    sign_in_as(user)
     expect(page).to have_content "Welcome Back"
       #{user.first_name.capitalize} #{user.last_name.capitalize}"
     expect(page).to_not have_content "Sign In"
