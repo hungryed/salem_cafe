@@ -2,6 +2,15 @@ require 'spec_helper'
 
 describe Order do
   let(:blanks) {[nil, '']}
+
+  before(:each) do
+    Timecop.freeze(Time.local(2014,1,4,6,0,0))
+  end
+
+  after(:each) do
+    Timecop.return
+  end
+
   it { should belong_to :user }
   it { should belong_to :food }
 

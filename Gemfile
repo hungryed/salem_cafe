@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'simple_form'
 gem 'devise'
 gem 'foundation-rails'
+gem 'validates_timeliness'
+gem 'chronic'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -45,6 +47,7 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'dotenv-rails'
   gem 'launchy'
+  gem 'timecop'
 end
 
 group :development do
