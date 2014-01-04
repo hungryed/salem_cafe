@@ -9,6 +9,5 @@ class Order < ActiveRecord::Base
   validates_presence_of :arrival_time
   validates_datetime :arrival_time,
     between: ['7:00am', '2:00pm']
-  validates_futureness_of :arrival_time,
-   message: 'Arrival Time must be in the future'
+  validates_futureness_of :arrival_time
 end

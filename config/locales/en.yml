@@ -23,4 +23,4 @@ en:
   hello: "Hello world"
   errors:
     messages:
-      arrival_time: "must be in the future"
+      arrival_time: "Arrival must be a future time"
