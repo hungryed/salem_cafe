@@ -28,7 +28,7 @@ feature 'worker adds a food item' do
       visit root_path
       click_on 'Add Food'
 
-      expect(page).to have_content "Only workers can add food"
+      expect(page).to have_content "You do not have permission to access that page."
     end
   end
 

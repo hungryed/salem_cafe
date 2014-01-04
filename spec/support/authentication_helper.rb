@@ -17,4 +17,12 @@ module Authentication
     fill_in 'Password Confirmation', with: user.password
     click_on 'Sign Up'
   end
+
+  def worker_sign_in_as(user)
+
+  end
+
+  def admin_sign_in_as(user)
+
+  end
 end
