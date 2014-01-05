@@ -50,6 +50,11 @@ feature 'user places an order' do
   end
 
 
-  scenario "unauthenticated user can't place an order"
+  scenario "unauthenticated user can't place an order" do
+    visit root_path
+    click_on 'Order Food'
+    expect(page).to have_content 'You do not have permission to access that page'
+    expect(page).to have_content 'Sign Up'
+  end
 
 end
