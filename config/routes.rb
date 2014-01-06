@@ -1,8 +1,12 @@
 SalemCafe::Application.routes.draw do
   root 'pages#index'
   resources :foods
-  resources :orders
   devise_for :users
+  # resources :orders
+  resources :users, only: :none do
+    resources :orders
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

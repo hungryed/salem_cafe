@@ -1,4 +1,9 @@
 <ul>
   <li><%= link_to 'Add Food', new_food_path %></li>
-  <li><%= link_to 'Order Food', new_order_path %></li>
+  <% if user_signed_in? %>
+    <li><%= link_to 'Order Food', new_user_order_path(current_user) %></li>
+    <li><%= link_to 'My Order', user_orders_path(current_user) %></li>
+  <% else %>
+    <li><%= link_to 'Order Food', new_user_session_path %></li>
+  <% end %>
 </ul>

@@ -1,4 +1,4 @@
-<%= simple_form_for @order do |f| %>
+<%= simple_form_for [current_user, @order] do |f| %>
   <% if @order.errors.any? %>
     <% @order.errors.each do |name, error| %>
       <%= error %>
