@@ -32,6 +32,7 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'validates_timeliness'
 gem 'chronic'
+gem 'validates_email_format_of'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -48,6 +49,8 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'launchy'
   gem 'timecop'
+  gem 'email_spec'
+  gem 'mailcatcher'
 end
 
 group :development do
