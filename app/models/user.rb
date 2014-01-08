@@ -7,4 +7,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def todays_order
+    orders.find do |order|
+      order.arrival_time.today?
+    end
+  end
 end

@@ -4,7 +4,7 @@ SalemCafe::Application.routes.draw do
   devise_for :users
   # resources :orders
   resources :users, only: :none do
-    resources :orders
+    resources :orders, except: :show
   end
 
   resources :contacts, only: [:new, :create]

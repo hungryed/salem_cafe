@@ -9,11 +9,37 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def show
+
+  end
+
   def create
     @order = current_user.orders.build(order_params)
 
     if @order.save
       redirect_to root_path, notice: 'Order placed successfully'
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @order = current_user.todays_order
+
+    if @order.destroy
+      redirect_to root_path, notice: 'Order cancelled'
+    end
+  end
+
+  def edit
+    @order = current_user.todays_order
+  end
+
+  def update
+    @order = current_user.todays_order
+
+    if @order.update(order_params)
+      redirect_to root_path, notice: 'Order changed successfully'
     else
       render :new
     end

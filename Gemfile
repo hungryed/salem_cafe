@@ -33,6 +33,7 @@ gem 'foundation-rails'
 gem 'validates_timeliness'
 gem 'chronic'
 gem 'validates_email_format_of'
+gem 'authority'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

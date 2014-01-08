@@ -49,11 +49,43 @@ feature 'user places an order' do
 
   end
 
-
   scenario "unauthenticated user can't place an order" do
     visit root_path
     click_on 'Order Food'
     expect(page).to have_content 'Sign Up'
   end
 
+  scenario 'user can edit their order' do
+    order = FactoryGirl.create(:order)
+    sign_in_as(order.user)
+    click_on 'My Orders'
+    click_on 'Edit Order'
+    expect(page).to have_content order.food.name
+    within '#order_arrival_time_4i' do
+      select '01 PM'
+    end
+    within '#order_arrival_time_5i' do
+      select '00'
+    end
+    click_on 'Update Order'
+
+    expect(page).to have_content 'Order changed successfully'
+  end
+
+  scenario 'user edits their order with bad info' do
+    order = FactoryGirl.create(:order)
+    sign_in_as(order.user)
+    click_on 'My Orders'
+    click_on 'Edit Order'
+    expect(page).to have_content order.food.name
+    within '#order_arrival_time_4i' do
+      select '7 AM'
+    end
+    within '#order_arrival_time_5i' do
+      select '00'
+    end
+    click_on 'Update Order'
+
+    expect(page).to have_content 'Arrival must be a future time'
+  end
 end
