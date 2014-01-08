@@ -19,7 +19,12 @@ module Authentication
   end
 
   def worker_sign_in_as(user)
-
+    visit root_path
+    click_on 'Sign In'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign In'
+    user.role = 'worker'
   end
 
   def admin_sign_in_as(user)

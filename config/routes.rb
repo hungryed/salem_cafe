@@ -6,7 +6,6 @@ SalemCafe::Application.routes.draw do
   resources :users, only: :none do
     resources :orders, except: :show
   end
-
   resources :contacts, only: [:new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.

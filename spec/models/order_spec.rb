@@ -13,6 +13,7 @@ describe Order do
 
   it { should belong_to :user }
   it { should belong_to :food }
+  it { should validate_presence_of :section }
 
   it { should have_valid(:user).when(User.new) }
   it { should_not have_valid(:user).when(nil) }

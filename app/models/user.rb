@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
       order.arrival_time.today?
     end
   end
+
+  def is_employee?
+    role == 'worker'
+  end
 end

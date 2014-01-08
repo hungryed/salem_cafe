@@ -14,3 +14,15 @@ class ApplicationAuthorizer < Authority::Authorizer
   end
 
 end
+
+# class FoodAuthorizer < ApplicationAuthorizer
+#   def creatable_by?(user)
+#     user.is_employee?
+#   end
+
+#   def updatable_by?(user)
+#     user.is_employee?
+#   end
+# end
+
+

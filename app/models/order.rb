@@ -3,6 +3,8 @@ class Order < ActiveRecord::Base
     inverse_of: :orders
   belongs_to :food,
     inverse_of: :orders
+  belongs_to :section,
+    inverse_of: :orders
 
   validates_presence_of :user
   validates_presence_of :food
@@ -10,4 +12,5 @@ class Order < ActiveRecord::Base
   validates_datetime :arrival_time,
     between: ['7:00am', '2:00pm']
   validates_futureness_of :arrival_time
+  validates_presence_of :section
 end

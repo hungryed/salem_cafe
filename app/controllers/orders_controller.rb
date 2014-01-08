@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_user.orders.build(order_params)
+    @order.section = (Food.find(params[:order][:food_id])).section
 
     if @order.save
       redirect_to root_path, notice: 'Order placed successfully'
