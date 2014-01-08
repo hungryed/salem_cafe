@@ -54,6 +54,10 @@ group :development, :test do
   gem 'mailcatcher'
 end
 
+group :test do
+  gem 'coveralls', require: false
+end
+
 group :development do
   gem 'quiet_assets'
 end
