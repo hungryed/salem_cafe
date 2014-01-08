@@ -12,6 +12,6 @@ class ContactForm < ActionMailer::Base
     @greeting = "Hey baby"
     mail to: "hungryed6@yahoo.com",
       from: @contact_form.email,
-      subject: 'Hey Sexy'
+      subject: @contact_form.subject
   end
 end

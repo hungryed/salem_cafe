@@ -18,7 +18,7 @@ feature 'user submits a contact form' do
     expect(page).to have_content 'Your form has been submitted'
     expect(ActionMailer::Base.deliveries.size).to eql(1)
     last_email = ActionMailer::Base.deliveries.last
-    expect(last_email).to have_subject('Hey Sexy')
+    expect(last_email).to have_subject('A valid Complaint')
     expect(last_email).to deliver_to('hungryed6@yahoo.com')
     expect(last_email).to have_body_text 'I hate the universe'
     expect(last_email).to deliver_from user.email

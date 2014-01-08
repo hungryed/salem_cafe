@@ -9,7 +9,6 @@ class ContactsController < ApplicationController
     if @contact.save
       ContactForm.receipt(@contact).deliver
       redirect_to root_path, notice: 'Your form has been submitted successfully'
-      return true
     else
       render :new
     end
