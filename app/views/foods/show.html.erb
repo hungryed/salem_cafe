@@ -1,0 +1,6 @@
+<% if current_user.is_employee? %>
+  <%= render 'food_form' %>
+<% else %>
+  <%= @food.name %>
+  <%= @food.description %>
+<% end %>

@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :authorize_user_is_not_employee, except: [:index, :show]
 
   def index
     @orders = current_user.orders

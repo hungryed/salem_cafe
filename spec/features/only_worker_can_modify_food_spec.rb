@@ -5,7 +5,7 @@ feature 'worker modifies food' do
   let(:worker) { FactoryGirl.create(:user, role: 'worker') }
   let!(:section) { FactoryGirl.create(:section) }
   context 'authenticated worker' do
-    scenario 'modifies food with valid attributes' do
+    scenario 'creates food with valid attributes' do
       worker_sign_in_as(worker)
       visit root_path
       click_on 'Add Food'
@@ -17,7 +17,7 @@ feature 'worker modifies food' do
       expect(page).to have_content "Food Item added"
     end
 
-    scenario 'modifies food with invalid attributes' do
+    scenario 'creates food with invalid attributes' do
       worker_sign_in_as(worker)
       visit root_path
       click_on 'Add Food'
@@ -25,6 +25,37 @@ feature 'worker modifies food' do
 
       expect_presence_error_for('food', :name)
       expect_presence_error_for('food', :section_id)
+    end
+
+    scenario 'modifies food with valid attributes' do
+      food = FactoryGirl.create(:food)
+      worker_sign_in_as(worker)
+      visit root_path
+      click_on 'See Foods'
+      click_on food.name
+      fill_in 'Name', with: 'Potatoe'
+      fill_in 'Description', with: 'Starch'
+      click_on 'Update Food'
+
+      expect(page).to have_content 'Food Item updated successfully'
+    end
+
+    scenario 'modifies food with invalid attributes' do
+      food = FactoryGirl.create(:food)
+      worker_sign_in_as(worker)
+      visit root_path
+      click_on 'See Foods'
+      click_on food.name
+      food.name = ""
+      food.description = ""
+      food.save
+      fill_in 'Name', with: ""
+      fill_in 'Description', with: ""
+      select "", from: 'Section'
+      click_on 'Update Food'
+      # NEEDS WORKING ON (figure out how to fill out form with blank info)
+      # expect_presence_error_for('food', :name)
+      # expect_presence_error_for('food', :section_id)
     end
   end
 
@@ -34,10 +65,23 @@ feature 'worker modifies food' do
       visit root_path
 
       expect(page).to_not have_content 'Add Food'
-      expect{ visit new_food_path }.to raise_error
+      visit new_food_path
+      expect(page).to have_content 'Naw Son'
     end
 
-    scenario "can visit food description path"
+    scenario "can visit food description path" do
+      food = FactoryGirl.create(:food)
+      sign_in_as(user)
+      visit root_path
+
+      click_on 'See Foods'
+
+      expect(page).to have_content food.name
+      click_on food.name
+      expect(page).to have_content food.name
+      expect(page).to have_content food.description
+      expect(page).to have_content food.section.name
+    end
   end
 
 
