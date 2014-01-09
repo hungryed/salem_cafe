@@ -34,7 +34,19 @@ feature 'admin edits section' do
     expect_presence_error_for('section', :description)
   end
 
-  scenario "worker can't edit sections"
+  scenario "worker can't edit sections" do
+    worker_sign_in_as(worker)
+    visit root_path
+    click_on 'View Sections'
+    expect(page).to_not have_content 'Edit'
+    expect{ visit edit_sections_path(section) }.to raise_error
+  end
 
-  scenario "customer can't edit sections"
+  scenario "customer can't edit sections" do
+    sign_in_as(user)
+    visit root_path
+    click_on 'View Sections'
+    expect(page).to_not have_content 'Edit'
+    expect{ visit edit_sections_path(section) }.to raise_error
+  end
 end
