@@ -52,9 +52,7 @@ feature 'worker modifies food' do
       fill_in 'Name', with: ''
       fill_in 'Description', with: ''
       select "", from: 'Section'
-      save_and_open_page
       click_on 'Update Food'
-      save_and_open_page
       # NEEDS WORKING ON (figure out how to fill out form with blank info)
       # expect_presence_error_for('food', :name)
       # expect_presence_error_for('food', :section_id)

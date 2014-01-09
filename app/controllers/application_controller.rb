@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     deny_access unless current_user.is_employee?
   end
 
+  def authorize_user_is_admin
+    deny_access unless current_user.is_admin?
+  end
+
   def authorize_user_is_not_employee
     deny_access if current_user.is_employee?
   end

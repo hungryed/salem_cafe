@@ -1,5 +1,8 @@
 <ul>
   <% if user_signed_in? %>
+    <% if current_user.is_admin? %>
+      <li><%= link_to 'Add Section', new_section_path %></li>
+    <% end %>
     <% if current_user.is_employee? %>
       <li><%= link_to 'Add Food', new_food_path %></li>
     <% end %>
@@ -9,4 +12,5 @@
     <li><%= link_to 'Order Food', new_user_session_path %></li>
   <% end %>
   <%= link_to 'See Foods', foods_path %>
+  <%= link_to 'View Sections', sections_path %>
 </ul>

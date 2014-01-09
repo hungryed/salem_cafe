@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   end
 
   def is_employee?
-    role == 'worker'
+    role == 'worker' || role == 'admin'
+  end
+
+  def is_admin?
+    role == 'admin'
   end
 end

@@ -1,0 +1,7 @@
+<% @sections.each do |section| %>
+  <%= section.name %>
+  <%= section.description %>
+  <% if current_user.is_admin? %>
+    <%= link_to 'Edit', edit_section_path(section) %>
+  <% end %>
+<% end %>
