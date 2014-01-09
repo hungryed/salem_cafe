@@ -1,5 +1,5 @@
 <% if current_user.is_employee? %>
-  <%= @orders.first.section.name %>
+  <%= @current_section.name %>
   <% @orders.each do |order| %>
     <%= order.food.name %>
     <%= order.user.first_name %>

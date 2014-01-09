@@ -10,6 +10,7 @@ feature 'workers can see orders for their sections' do
 
   after(:each) do
     Timecop.return
+    Section.destroy_all
   end
 
   scenario 'authenticated worker visits section' do
@@ -26,7 +27,20 @@ feature 'workers can see orders for their sections' do
     expect(page).to have_content order.arrival_time
   end
 
-  scenario 'authenticated worker only sees todays orders'
+  scenario 'authenticated worker only sees todays orders' do
+    worker_sign_in_as(worker)
+    order.section.save
+    visit "/sections/#{order.section.id}/orders"
+    expect(page).to have_content order.food.name
+    visit root_path
+    Timecop.freeze(Time.local(2014,1,10,6,0,0))
+    visit "/sections/#{order.section.id}/orders"
+    expect(page).to have_content order.section.name
+    expect(page).to_not have_content order.food.name
+    expect(page).to_not have_content order.user.first_name
+    expect(page).to_not have_content order.user.last_name
+    expect(page).to_not have_content order.arrival_time
+  end
 
   scenario "non-worker can't visit section to see orders"
 end

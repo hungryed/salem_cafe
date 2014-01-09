@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
     if !current_user.nil?
       if current_user.is_employee?
         @orders = Section.find(params[:division_id]).todays_orders
+        @current_section = Section.find(params[:division_id])
       else
         @orders = current_user.orders
       end
