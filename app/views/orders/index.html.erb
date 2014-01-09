@@ -1,12 +1,21 @@
-<% if !current_user.todays_order.nil? %>
-  <%= current_user.todays_order.food.name %>
-  <%= current_user.todays_order.arrival_time %>
-  <%= link_to 'Edit Order', edit_user_order_path(current_user, current_user.todays_order) %>
-  <%= link_to 'Cancel Order', user_order_path(current_user, current_user.todays_order), method: :delete %>
+<% if current_user.is_employee? %>
+  <%= @orders.first.section.name %>
+  <% @orders.each do |order| %>
+    <%= order.food.name %>
+    <%= order.user.first_name %>
+    <%= order.user.last_name %>
+    <%= order.arrival_time %>
+  <% end %>
+<% else %>
+  <% if !current_user.todays_order.nil? %>
+    <%= current_user.todays_order.food.name %>
+    <%= current_user.todays_order.arrival_time %>
+    <%= link_to 'Edit Order', edit_user_order_path(current_user, current_user.todays_order) %>
+    <%= link_to 'Cancel Order', user_order_path(current_user, current_user.todays_order), method: :delete %>
+  <% end %>
+  <br>
+  <% @orders.each do |order| %>
+    <%= order.food.name %>
+    <%= order.arrival_time %>
+  <% end %>
 <% end %>
-<br>
-<% @orders.each do |order| %>
-  <%= order.food.name %>
-  <%= order.arrival_time %>
-<% end %>
-

@@ -3,7 +3,13 @@ class OrdersController < ApplicationController
   before_filter :authorize_user_is_not_employee, except: [:index, :show]
 
   def index
-    @orders = current_user.orders
+    if !current_user.nil?
+      if current_user.is_employee?
+        @orders = Section.find(params[:division_id]).todays_orders
+      else
+        @orders = current_user.orders
+      end
+    end
   end
 
   def new
@@ -11,7 +17,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-
+    @order = Order.find(params[:id])
   end
 
   def create

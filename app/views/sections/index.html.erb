@@ -1,6 +1,5 @@
   <% @sections.each do |section| %>
-  <% div_id = "section-#{section.id}" %>
-  <div id= div_id>
+  <div>
     <%= link_to section.name, section_path(section) %>
     <%= section.description %>
     <% if user_signed_in? %>
