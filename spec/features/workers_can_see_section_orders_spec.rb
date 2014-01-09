@@ -28,6 +28,8 @@ feature 'workers can see orders for their sections' do
     expect(page).to have_content order.arrival_time
   end
 
+  scenario 'authenticated worker sees specific order'
+
   scenario 'authenticated worker only sees todays orders' do
     worker_sign_in_as(worker)
     order.section.save
