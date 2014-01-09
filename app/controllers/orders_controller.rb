@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
     if @order.update(order_params)
       redirect_to root_path, notice: 'Order changed successfully'
     else
-      render :new
+      render :edit
     end
   end
 

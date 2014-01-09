@@ -33,6 +33,7 @@ feature 'worker modifies food' do
       visit root_path
       click_on 'See Foods'
       click_on food.name
+      click_on 'Edit'
       fill_in 'Name', with: 'Potatoe'
       fill_in 'Description', with: 'Starch'
       click_on 'Update Food'
@@ -46,16 +47,14 @@ feature 'worker modifies food' do
       visit root_path
       click_on 'See Foods'
       click_on food.name
-      food.name = ""
-      food.description = ""
-      food.save
+      click_on 'Edit'
       fill_in 'Name', with: ''
       fill_in 'Description', with: ''
       select "", from: 'Section'
       click_on 'Update Food'
-      # NEEDS WORKING ON (figure out how to fill out form with blank info)
-      # expect_presence_error_for('food', :name)
-      # expect_presence_error_for('food', :section_id)
+
+      expect_presence_error_for('food', :name)
+      expect_presence_error_for('food', :section_id)
     end
   end
 

@@ -1,6 +1,6 @@
+
+<%= @food.name %>
+<%= @food.description %>
 <% if current_user.is_employee? %>
-  <%= render 'food_form' %>
-<% else %>
-  <%= @food.name %>
-  <%= @food.description %>
+  <%= link_to 'Edit', edit_food_path(@food) %>
 <% end %>
