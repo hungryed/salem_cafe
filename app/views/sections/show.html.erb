@@ -1,0 +1,6 @@
+<%= @section.name %>
+<%= @section.description %>
+<% @section.foods.each do |food| %>
+  <%= food.name %>
+  <%= food.description %>
+<% end %>

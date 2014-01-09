@@ -18,6 +18,10 @@ class SectionsController < ApplicationController
     end
   end
 
+  def show
+    @section = Section.find(params[:id])
+  end
+
   def create
     @section = Section.new(section_params)
 

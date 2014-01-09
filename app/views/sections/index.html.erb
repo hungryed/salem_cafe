@@ -1,7 +1,9 @@
-<% @sections.each do |section| %>
-  <%= section.name %>
-  <%= section.description %>
-  <% if current_user.is_admin? %>
-    <%= link_to 'Edit', edit_section_path(section) %>
+  <% @sections.each do |section| %>
+    <%= link_to section.name, section_path(section) %>
+    <%= section.description %>
+    <% if user_signed_in? %>
+      <% if current_user.is_admin? %>
+        <%= link_to 'Edit', edit_section_path(section) %>
+      <% end %>
+    <% end %>
   <% end %>
-<% end %>
