@@ -7,6 +7,10 @@ SalemCafe::Application.routes.draw do
     resources :orders, except: :show
   end
   resources :sections
+
+  resources :sections, as: 'division', only: [:index, :show] do
+    resources :orders, only: [:index, :show]
+  end
   resources :contacts, only: [:new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.

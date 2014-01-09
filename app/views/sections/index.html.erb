@@ -1,9 +1,15 @@
   <% @sections.each do |section| %>
+  <% div_id = "section-#{section.id}" %>
+  <div id= div_id>
     <%= link_to section.name, section_path(section) %>
     <%= section.description %>
     <% if user_signed_in? %>
       <% if current_user.is_admin? %>
         <%= link_to 'Edit', edit_section_path(section) %>
       <% end %>
+      <% if current_user.is_employee? %>
+        <%= link_to 'Orders', division_orders_path(section) %>
+      <% end %>
     <% end %>
+  </div>
   <% end %>

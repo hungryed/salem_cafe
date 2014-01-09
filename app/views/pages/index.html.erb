@@ -5,6 +5,7 @@
     <% end %>
     <% if current_user.is_employee? %>
       <li><%= link_to 'Add Food', new_food_path %></li>
+      <li><%= link_to 'See Orders', division_index_path %></li>
     <% end %>
     <li><%= link_to 'Order Food', new_user_order_path(current_user) %></li>
     <li><%= link_to 'My Orders', user_orders_path(current_user) %></li>
