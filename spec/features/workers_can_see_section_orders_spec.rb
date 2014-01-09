@@ -2,6 +2,7 @@ require 'spec_helper'
 
 feature 'workers can see orders for their sections' do
   let(:order) { FactoryGirl.create(:order) }
+  let(:user) { FactoryGirl.create(:user) }
   let(:worker) { FactoryGirl.create(:user, role: 'worker') }
 
   before(:each) do
@@ -42,5 +43,14 @@ feature 'workers can see orders for their sections' do
     expect(page).to_not have_content order.arrival_time
   end
 
-  scenario "non-worker can't visit section to see orders"
+  scenario "non-worker can't visit section to see orders" do
+    sign_in_as(order.user)
+    order.section.save
+    visit root_path
+    expect(page).to_not have_content 'See Orders'
+    visit "/sections/#{order.section.id}/orders"
+    expect(page).to_not have_content order.section.name
+    expect(page).to_not have_content order.user.first_name
+    expect(page).to_not have_content order.user.last_name
+  end
 end
