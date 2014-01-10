@@ -87,12 +87,13 @@ feature 'user places an order' do
     click_on 'My Orders'
     expect(page).to have_content order.food.name
     click_on 'Edit Order'
+    select '', from: 'Food'
     within '#order_arrival_time_4i' do
       select '7 AM'
     end
-
     click_on 'Update Order'
 
+    expect(page).to have_content "can't be blank"
     expect(page).to have_content 'Arrival must be a future time'
 
   end
