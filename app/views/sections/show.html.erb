@@ -1,6 +1,13 @@
 <%= @section.name %>
 <%= @section.description %>
+<% if user_signed_in? %>
+  <% if current_user.is_employee? %>
+    <%= link_to 'Orders', section_orders_path(@section) %>
+    <%= link_to 'Add Food', new_section_food_path(@section) %>
+    <%= link_to 'Food Categories', section_food_categories_path(@section) %>
+  <% end %>
+<% end %>
 <% @section.foods.each do |food| %>
-  <%= food.name %>
+  <%= link_to food.name, section_food_path(@section, food) %>
   <%= food.description %>
 <% end %>

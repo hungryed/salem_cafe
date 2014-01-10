@@ -1,15 +1,15 @@
 SalemCafe::Application.routes.draw do
   root 'pages#index'
-  resources :foods
   devise_for :users
-  # resources :orders
+
   resources :users, only: :none do
     resources :orders, except: :show
   end
-  resources :sections
 
-  resources :sections, as: 'division', only: [:index, :show] do
+  resources :sections do
     resources :orders, only: [:index, :show]
+    resources :food_categories
+    resources :foods
   end
   resources :contacts, only: [:new, :create]
 

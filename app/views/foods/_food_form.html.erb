@@ -1,6 +1,6 @@
-<%= simple_form_for @food do |f| %>
+<%= simple_form_for [@section, @food] do |f| %>
   <%= f.input :name %>
-  <%= f.input :section_id, label: 'Section', collection: Section.all, label_method: :name %>
+  <%= f.input :food_category_id, label: 'Category', collection: @section.food_categories, label_method: :name %>
   <%= f.input :description %>
   <%= f.input :picture, as: :file %>
   <%= f.button :submit %>

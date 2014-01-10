@@ -11,7 +11,6 @@ feature 'workers can see orders for their sections' do
 
   after(:each) do
     Timecop.return
-    Section.destroy_all
   end
 
   scenario 'authenticated worker visits section' do

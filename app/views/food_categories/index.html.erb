@@ -1,0 +1,4 @@
+<% @food_categories.each do |category| %>
+  <%= category.name %>
+<% end %>
+<%= link_to 'Add New Category', new_section_food_category_path(@section) %>

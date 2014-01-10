@@ -5,8 +5,8 @@ class OrdersController < ApplicationController
   def index
     if !current_user.nil?
       if current_user.is_employee?
-        @orders = Section.find(params[:division_id]).todays_orders
-        @current_section = Section.find(params[:division_id])
+        @orders = Section.find(params[:section_id]).todays_orders
+        @current_section = Section.find(params[:section_id])
       else
         @orders = current_user.orders
       end
@@ -23,7 +23,6 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_user.orders.build(order_params)
-    @order.section = (Food.find(params[:order][:food_id])).section
 
     if @order.save
       redirect_to root_path, notice: 'Order placed successfully'
@@ -56,7 +55,8 @@ class OrdersController < ApplicationController
 
   protected
   def order_params
-    params.require(:order).permit(:food_id, :user_id, :arrival_time)
+    params.require(:order).permit(:food_id, :user_id, :arrival_time,
+      :section_id)
   end
 
 end

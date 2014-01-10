@@ -10,9 +10,11 @@ feature 'worker or admin creates a food category' do
     worker_sign_in_as(worker)
     visit root_path
     click_on 'View Sections'
+    click_on section.name
     click_on 'Food Categories'
     click_on 'Add New Category'
     fill_in 'Name', with: 'Side'
+    fill_in 'Description', with: 'Small Foods'
     click_on 'Create Category'
 
     expect(page).to have_content 'Category created successfully'

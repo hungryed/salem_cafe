@@ -4,9 +4,10 @@ describe Food do
   let(:blanks) { [nil, ''] }
 
   it { should have_many :orders }
-  it { should belong_to :section }
+  it { should belong_to(:section) }
+  it { should belong_to :food_category }
 
-  it { should validate_presence_of :section }
+  it { should validate_presence_of :food_category }
 
   it { should validate_presence_of :name }
   it { should have_valid(:name).when('Chicken Sandwich', 'Pickle') }

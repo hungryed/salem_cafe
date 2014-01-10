@@ -1,6 +1,5 @@
-
 <%= @food.name %>
 <%= @food.description %>
 <% if current_user.is_employee? %>
-  <%= link_to 'Edit', edit_food_path(@food) %>
+  <%= link_to 'Edit', edit_section_food_path(@section, @food) %>
 <% end %>
