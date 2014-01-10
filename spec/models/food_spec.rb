@@ -4,8 +4,21 @@ describe Food do
   let(:blanks) { [nil, ''] }
 
   it { should have_many :orders }
-  it { should belong_to(:section) }
   it { should belong_to :food_category }
+
+  it { should respond_to(:section) }
+  it { should_not belong_to(:section) }
+  it "should associate a section through food_category" do
+    food_category = FactoryGirl.create(:food_category)
+    food = FactoryGirl.create(:food, food_category: food_category)
+    expect(food.section).to eq(food_category.section)
+  end
+
+  it "should associate a section id through food_category" do
+    food_category = FactoryGirl.create(:food_category)
+    food = FactoryGirl.create(:food, food_category: food_category)
+    expect(food.section_id).to eq(food_category.section.id)
+  end
 
   it { should validate_presence_of :food_category }
 
