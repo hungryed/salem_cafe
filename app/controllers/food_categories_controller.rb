@@ -1,4 +1,6 @@
 class FoodCategoriesController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :authorize_user_is_employee
 
   def index
     @section = Section.find(params[:section_id])
@@ -18,7 +20,23 @@ class FoodCategoriesController < ApplicationController
     if @food_category.save
       redirect_to root_path, notice: 'Category created successfully'
     else
+      render :new
+    end
+  end
 
+  def edit
+    @food_category = FoodCategory.find(params[:id])
+    @section = Section.find(params[:section_id])
+  end
+
+  def update
+    @food_category = FoodCategory.find(params[:id])
+    @section = Section.find(params[:section_id])
+
+    if @food_category.update(food_category_params)
+      redirect_to root_path, notice: 'Category updated successfully'
+    else
+      render :edit
     end
   end
 
