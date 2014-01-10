@@ -46,7 +46,7 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @order = current_user.todays_order
+    @order = Order.find(params[:id])
   end
 
   def update
