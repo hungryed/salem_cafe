@@ -4,7 +4,9 @@
       <%= error %>
     <% end %>
   <% end %>
-  <%= f.input :food_id, collection: Food.all, label_method: :name %>
+
+  <%= hidden_field_tag 'section_id' , section.id %>
+  <%= f.input :food_id, labe: 'Food', collection: section.foods, label_method: :name %>
 
   <%= f.time_select :arrival_time, minute_step: 5, start_hour: 7 , end_hour: 13, ampm: true %>
   <%= f.button :submit %>

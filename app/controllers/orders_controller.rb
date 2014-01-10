@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @sections = Section.all
     @order = Order.new
   end
 
@@ -23,6 +24,11 @@ class OrdersController < ApplicationController
 
   def create
     @order = current_user.orders.build(order_params)
+    @section = Section.find(params[:section_id])
+    @sections = Section.all
+    if @section
+      @order.section = @section
+    end
 
     if @order.save
       redirect_to root_path, notice: 'Order placed successfully'
@@ -45,6 +51,7 @@ class OrdersController < ApplicationController
 
   def update
     @order = current_user.todays_order
+    @section = Section.find(params[:section_id])
 
     if @order.update(order_params)
       redirect_to root_path, notice: 'Order changed successfully'

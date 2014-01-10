@@ -1,1 +1,4 @@
-<%= render 'order_form' %>
+<% @sections.each do |section| %>
+  <%= link_to section.name, '#' %>
+  <%= render 'order_form', section: section %>
+<% end %>

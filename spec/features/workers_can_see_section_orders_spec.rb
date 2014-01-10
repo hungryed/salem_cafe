@@ -17,9 +17,9 @@ feature 'workers can see orders for their sections' do
     worker_sign_in_as(worker)
     order.section.save
     visit root_path
-    click_on 'See Orders'
-    expect(page).to have_content 'Orders'
-    visit "/sections/#{order.section.id}/orders"
+    click_on 'View Sections'
+    click_on "section_#{order.section.id}"
+    click_on 'Orders'
     expect(page).to have_content order.section.name
     expect(page).to have_content order.food.name
     expect(page).to have_content order.user.first_name
