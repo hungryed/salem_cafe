@@ -52,7 +52,6 @@ feature 'user places an order' do
       expect(page).to have_content 'Arrival must be a future time'
       expect(page).to_not have_content 'Order Food'
     end
-
   end
 
   scenario "unauthenticated user can't place an order" do
