@@ -15,7 +15,8 @@
     <% flash.each do |name, msg| %>
       <%= msg %>
     <% end %>
-    <nav>
+    <nav class='top-bar', >
+    <div>
       <ul>
         <li>
           <% if user_signed_in? %>
@@ -26,10 +27,12 @@
           <% end %>
         </li>
       </ul>
+      </div>
     </nav>
 
-
-    <%= yield %>
+    <div class='row'>
+      <%= yield %>
+    </div>
     <%= javascript_include_tag "application" %>
 
     <footer>
