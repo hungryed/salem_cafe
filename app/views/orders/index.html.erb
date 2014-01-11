@@ -5,7 +5,7 @@
     <%= order.food.name %>
     <%= order.user.first_name %>
     <%= order.user.last_name %>
-    <%= order.arrival_time %>
+    <%= link_to order.arrival_time, section_order_path(@current_section, order) %>
   <% end %>
 <% else %>
   <% if !current_user.todays_order.nil? %>
