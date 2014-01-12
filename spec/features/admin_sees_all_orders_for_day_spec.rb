@@ -19,7 +19,9 @@ feature 'admin sees all orders for day' do
     visit root_path
     order
     click_on "See Order Totals"
-    expect(page).to have_content "Today's Orders"
+    click_on "Today's Orders"
+    expect(page).to have_content order.food.name
+    expect(page).to have_content order.arrival_time
     expect(page).to have_content order.section.name
   end
 

@@ -1,0 +1,21 @@
+<%= form_tag(order_totals_path, method: :get) do %>
+  <%= hidden_field_tag "todays_orders", true %>
+  <%= submit_tag "Today's Orders" %>
+<% end %>
+
+<%= form_tag(order_totals_path, method: :get) do %>
+  <%= label_tag(:start_date, "Start Date") %>
+  <%= date_select(:order_date_params ,:start_date) %>
+  <%= label_tag(:end_date, "end Date") %>
+  <%= date_select(:order_date_params ,:end_date) %>
+  <%= submit_tag "See Orders in date range" %>
+<% end %>
+
+
+<% if params[:order_date_params] || params[:todays_orders] %>
+  <% @orders.each do |order| %>
+    <%= order.food.name %>
+    <%= order.arrival_time %>
+    <%= order.section.name %>
+  <% end %>
+<% end %>
