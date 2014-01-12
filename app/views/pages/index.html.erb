@@ -2,6 +2,7 @@
   <% if user_signed_in? %>
     <% if current_user.is_admin? %>
       <li><%= link_to 'Add Section', new_section_path %></li>
+      <li><%= link_to "See Order Totals", order_totals_path %></li>
     <% end %>
     <% if current_user.is_employee? %>
 

@@ -52,6 +52,7 @@ group :development, :test do
   gem 'timecop'
   gem 'email_spec'
   gem 'mailcatcher'
+  gem 'selenium-webdriver'
 end
 
 group :test do
