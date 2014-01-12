@@ -1,4 +1,6 @@
 class OrderTotalsController < ApplicationController
+  before_filter :authorize_user_is_admin
+
   def index
     if params[:todays_orders] == 'true'
       @orders = OrderTotal.todays_orders

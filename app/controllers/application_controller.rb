@@ -6,11 +6,19 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def authorize_user_is_employee
-    deny_access unless current_user.is_employee?
+    if current_user
+      deny_access unless current_user.is_employee?
+    else
+      deny_access
+    end
   end
 
   def authorize_user_is_admin
-    deny_access unless current_user.is_admin?
+    if current_user
+      deny_access unless current_user.is_admin?
+    else
+      deny_access
+    end
   end
 
   def authorize_user_is_not_employee
