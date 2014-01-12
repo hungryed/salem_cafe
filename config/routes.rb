@@ -1,7 +1,7 @@
 SalemCafe::Application.routes.draw do
   root 'pages#index'
   devise_for :users
-  resources :order_totals
+  resources :order_totals, only: :index
 
   resources :users, only: :none do
     resources :orders, except: :show
