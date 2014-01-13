@@ -86,11 +86,11 @@ feature 'user places an order' do
     visit root_path
     click_on 'My Orders'
     expect(page).to have_content order.food.name
-    Timecop.freeze(2014,1,4,10,0,0)
+    Timecop.freeze(2014,1,4,12,0,0)
     click_on 'Edit Order'
     select '', from: 'Food'
     within '#order_arrival_time_4i' do
-      select '7 AM'
+      select '11 AM'
     end
     click_on 'Update Order'
 
