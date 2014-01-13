@@ -13,9 +13,6 @@
   </head>
 
   <body>
-    <% flash.each do |name, msg| %>
-      <%= msg %>
-    <% end %>
     <nav class='top-bar', >
     <div>
       <ul>
@@ -30,6 +27,9 @@
       </ul>
       </div>
     </nav>
+    <% flash.each do |name, msg| %>
+      <%= msg %>
+    <% end %>
 
     <div class='row'>
       <%= yield %>
