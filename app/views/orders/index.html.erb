@@ -6,6 +6,16 @@
     <%= order.user.first_name %>
     <%= order.user.last_name %>
     <%= link_to order.arrival_time, section_order_path(@current_section, order) %>
+
+    <%= form_for [order.user, order], url: user_order_path(order.user, order), method: :patch do |t| %>
+      <%= t.hidden_field :status, value: "in progress" %>
+      <%= t.submit "In Progress" %>
+    <% end %>
+
+    <%= form_for [order.user, order], url: user_order_path(order.user, order), method: :patch do |t| %>
+      <%= t.hidden_field :status, value: "completed"%>
+      <%= t.submit "Completed" %>
+    <% end %>
   <% end %>
 <% else %>
   <% if !current_user.todays_order.nil? %>

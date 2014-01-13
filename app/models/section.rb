@@ -15,7 +15,7 @@ class Section < ActiveRecord::Base
 
   def todays_orders
     orders.find_all do |order|
-      order.arrival_time.today?
+      order.arrival_time.today? && order.status != 'completed'
     end
   end
 

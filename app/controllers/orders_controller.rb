@@ -1,15 +1,13 @@
 class OrdersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :authorize_user_is_not_employee, except: [:index, :show]
+  before_filter :authorize_user_is_not_employee, except: [:index, :show, :update]
 
   def index
-    if !current_user.nil?
-      if current_user.is_employee?
-        @orders = Section.find(params[:section_id]).todays_orders
-        @current_section = Section.find(params[:section_id])
-      else
-        @orders = current_user.orders
-      end
+    if current_user.is_employee?
+      @orders = Section.find(params[:section_id]).todays_orders
+      @current_section = Section.find(params[:section_id])
+    else
+      @orders = current_user.orders
     end
   end
 
@@ -50,8 +48,8 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = current_user.todays_order
-    @section = Section.find(params[:section_id])
+    @order = Order.find(params[:id])
+    @section = Section.find(@order.section)
 
     if @order.update(order_params)
       redirect_to root_path, notice: 'Order changed successfully'
@@ -63,7 +61,7 @@ class OrdersController < ApplicationController
   protected
   def order_params
     params.require(:order).permit(:food_id, :user_id, :arrival_time,
-      :section_id)
+      :section_id, :status)
   end
 
 end
