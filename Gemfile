@@ -34,6 +34,8 @@ gem 'validates_timeliness'
 gem 'chronic'
 gem 'validates_email_format_of'
 gem 'cancan'
+gem 'chartkick'
+gem 'groupdate'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

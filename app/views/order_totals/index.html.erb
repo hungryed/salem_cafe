@@ -8,7 +8,7 @@
   <%= date_select(:order_date_params ,:start_date) %>
   <%= label_tag(:end_date, "end Date") %>
   <%= date_select(:order_date_params ,:end_date) %>
-  <%= submit_tag "See Orders in date range" %>
+  <%= submit_tag "See Orders in Date Range" %>
 <% end %>
 
 
@@ -17,5 +17,10 @@
     <%= order.food.name %>
     <%= order.arrival_time %>
     <%= order.section.name %>
+  <% end %>
+  <% if params[:todays_orders] %>
+    <%= line_chart Order.where(arrival_time: Date.today..Date.tomorrow).group_by_hour(:arrival_time).count %>
+  <% elsif params[:order_date_params] %>
+    <%= line_chart Order.where(arrival_time: @start_date..@end_date).group_by_day(:arrival_time).count %>
   <% end %>
 <% end %>
