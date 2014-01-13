@@ -1,3 +1,17 @@
+<% if params[:order_date_params] || params[:todays_orders] %>
+  <% if params[:todays_orders] %>
+    <%= line_chart Order.where(arrival_time: Date.today..Date.tomorrow).group_by_hour(:arrival_time).count %>
+  <% elsif params[:order_date_params] %>
+    <%= line_chart Order.where(arrival_time: @start_date..@end_date).group_by_day(:arrival_time).count %>
+  <% end %>
+  <% @orders.each do |order| %>
+    <%= order.food.name %>
+    <%= order.arrival_time %>
+    <%= order.section.name %>
+    <br>
+  <% end %>
+<% end %>
+
 <%= form_tag(order_totals_path, method: :get) do %>
   <%= hidden_field_tag "todays_orders", true %>
   <%= submit_tag "Today's Orders" %>
@@ -12,15 +26,4 @@
 <% end %>
 
 
-<% if params[:order_date_params] || params[:todays_orders] %>
-  <% @orders.each do |order| %>
-    <%= order.food.name %>
-    <%= order.arrival_time %>
-    <%= order.section.name %>
-  <% end %>
-  <% if params[:todays_orders] %>
-    <%= line_chart Order.where(arrival_time: Date.today..Date.tomorrow).group_by_hour(:arrival_time).count %>
-  <% elsif params[:order_date_params] %>
-    <%= line_chart Order.where(arrival_time: @start_date..@end_date).group_by_day(:arrival_time).count %>
-  <% end %>
-<% end %>
+
