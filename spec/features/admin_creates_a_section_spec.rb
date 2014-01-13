@@ -13,6 +13,8 @@ feature 'admin creates a section' do
       click_on 'Add Section'
       fill_in 'Name', with: 'Grill'
       fill_in 'Description', with: 'Hot Cooked foods'
+      fill_in 'Start Time', with: 11
+      fill_in 'End Time', with: 14
       click_on 'Create Section'
 
       expect(page).to have_content 'Section added successfully'
