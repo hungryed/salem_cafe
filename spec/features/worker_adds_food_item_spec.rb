@@ -16,6 +16,7 @@ feature 'worker adds a food item' do
       click_on 'Create Food'
 
       expect(page).to have_content "Food Item added"
+      expect(Food.last.picture.url).to be_present
     end
 
     scenario 'worker submits invalid information' do

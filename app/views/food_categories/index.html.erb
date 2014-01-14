@@ -1,5 +1,6 @@
 <% @food_categories.each do |category| %>
   <%= category.name %>
   <%= link_to 'Edit', edit_section_food_category_path(@section, category), id: "edit_food_category_#{category.id}" %>
+  <br>
 <% end %>
 <%= link_to 'Add New Category', new_section_food_category_path(@section) %>

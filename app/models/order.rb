@@ -13,4 +13,8 @@ class Order < ActiveRecord::Base
     between: ['7:00am', '2:00pm']
   validates_futureness_of :arrival_time
   validates_presence_of :section
+
+  def completed?
+    status == 'completed'
+  end
 end

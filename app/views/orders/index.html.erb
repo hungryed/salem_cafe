@@ -16,6 +16,7 @@
       <%= t.hidden_field :status, value: "completed"%>
       <%= t.submit "Completed" %>
     <% end %>
+    <br>
   <% end %>
 <% else %>
   <% if !current_user.todays_order.nil? %>
@@ -28,5 +29,6 @@
   <% @orders.each do |order| %>
     <%= order.food.name %>
     <%= order.arrival_time %>
+    <br>
   <% end %>
 <% end %>

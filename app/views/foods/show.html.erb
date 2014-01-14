@@ -1,5 +1,6 @@
 <%= @food.name %>
 <%= @food.description %>
+<%= image_tag @food.picture_url(:thumb).to_s %>
 <% if current_user.is_employee? %>
   <%= link_to 'Edit', edit_section_food_path(@section, @food) %>
 <% end %>
