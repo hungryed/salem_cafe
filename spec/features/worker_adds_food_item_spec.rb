@@ -11,6 +11,7 @@ feature 'worker adds a food item' do
       click_on food_category.section.name
       click_on 'Add Food'
       fill_in 'Name', with: 'Chicken Brocolli Cheddar Bake'
+      attach_file 'Picture', Rails.root.join('spec/file_fixtures/burger.jpg')
       select food_category.name, from: 'Category'
       click_on 'Create Food'
 
