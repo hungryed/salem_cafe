@@ -1,8 +1,10 @@
-<div class='sections-content'>
+<dl class="tabs" data-tab>
   <% @sections.each do |section| %>
-    <%= link_to section.name, '#', class: 'button' %>
-    <!-- <div style= 'display:none'> -->
-      <%= render 'order_form', section: section %>
-    <!-- </div> -->
+    <dd><%= link_to section.name, "#section-#{section.id}" %></dd>
+  <% end %>
+</dl>
+<div class="tabs-content">
+  <% @sections.each do |section| %>
+    <%= render 'order_form', section: section %>
   <% end %>
 </div>

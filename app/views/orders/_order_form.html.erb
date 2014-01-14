@@ -1,10 +1,10 @@
-<%= simple_form_for [current_user, @order], defaults: { label_html: { id: 'non_default_class' } } do |f| %>
+<%= simple_form_for [current_user, @order], html: { class: "content", id: "section-#{section.id}" } do |f| %>
   <% if @order.errors.any? %>
     <% @order.errors.each do |name, error| %>
       <%= error %>
     <% end %>
   <% end %>
-
+  <%= section.name %>
   <%= hidden_field_tag 'section_id' , section.id %>
   <%= f.input :food_id, label: 'Food', collection: section.foods, label_method: :name %>
   <%= f.time_select :arrival_time, minute_step: 5, start_hour: section.start_time.hour , end_hour: section.end_time.hour, ampm: true %>

@@ -7,7 +7,6 @@
     <title><%= content_for?(:title) ? yield(:title) : "Salem Cafe" %></title>
 
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
     <%= csrf_meta_tags %>
   </head>
@@ -41,6 +40,7 @@
       <%= yield %>
     </div>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
 
     <footer>
       <%= link_to 'Contact Us', new_contact_path %>
