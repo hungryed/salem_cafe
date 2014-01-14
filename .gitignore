@@ -20,4 +20,4 @@
 
 /coverage
 Ignore simplecov ouput
-.public/uploads
+/public/uploads
