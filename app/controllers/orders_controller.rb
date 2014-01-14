@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    @order = current_user.todays_order
+    @order = Order.find(params[:id])
 
     if @order.destroy
       redirect_to root_path, notice: 'Order cancelled'

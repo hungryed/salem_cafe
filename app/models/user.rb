@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  def todays_order
-    orders.find do |order|
-      order.arrival_time.today?
+  def todays_uncompleted_orders
+    orders.map do |order|
+      order if order.arrival_time.today? && order.status != 'complete'
     end
   end
 

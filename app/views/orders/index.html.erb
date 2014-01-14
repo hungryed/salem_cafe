@@ -1,4 +1,3 @@
-
 <% if current_user.is_employee? %>
   <%= @current_section.name %>
   <% @orders.each do |order| %>
@@ -19,11 +18,13 @@
     <br>
   <% end %>
 <% else %>
-  <% if !current_user.todays_order.nil? %>
-    <%= current_user.todays_order.food.name %>
-    <%= current_user.todays_order.arrival_time %>
-    <%= link_to 'Edit Order', edit_user_order_path(current_user, current_user.todays_order) %>
-    <%= link_to 'Cancel Order', user_order_path(current_user, current_user.todays_order), method: :delete %>
+  <% if !current_user.todays_uncompleted_orders.nil? %>
+    <% current_user.todays_uncompleted_orders.each do |order| %>
+      <%= order.food.name %>
+      <%= order.arrival_time %>
+      <%= link_to 'Edit Order', edit_user_order_path(current_user, order) %>
+      <%= link_to 'Cancel Order', user_order_path(current_user, order), method: :delete %>
+    <% end %>
   <% end %>
   <br>
   <% @orders.each do |order| %>
