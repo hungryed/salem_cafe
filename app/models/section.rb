@@ -14,12 +14,19 @@ class Section < ActiveRecord::Base
     between: ['7:00am', '2:00pm']
 
   def todays_orders
-    orders.find_all do |order|
+    section_orders = orders.find_all do |order|
       order.arrival_time.today? && order.status != 'completed'
     end
+
+    sort_by_date(section_orders)
   end
 
   def foods
     food_categories.map(&:foods).flatten
+  end
+
+  private
+  def sort_by_date(orders)
+    orders.sort_by { |order| order.arrival_time }
   end
 end

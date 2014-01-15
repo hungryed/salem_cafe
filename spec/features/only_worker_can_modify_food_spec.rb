@@ -88,6 +88,7 @@ feature 'worker modifies food' do
 
       expect(page).to have_content food.name
       click_on food.name
+      save_and_open_page
       expect(page).to have_content food.name
       expect(page).to have_content food.description
       expect(page).to have_content food.section.name

@@ -17,4 +17,8 @@ class Order < ActiveRecord::Base
   def completed?
     status == 'completed'
   end
+
+  def clean_arrival_time
+    arrival_time.to_datetime.strftime('%m-%d %I:%M%p')
+  end
 end

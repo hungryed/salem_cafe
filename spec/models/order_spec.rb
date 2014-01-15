@@ -23,4 +23,10 @@ describe Order do
 
   it { should have_valid(:arrival_time).when('11:40', '14:00', '11:00', '12:00', '13:23') }
   it { should_not have_valid(:arrival_time).when(*blanks,'6:59', '14:01', '0:00')}
+
+  it { should respond_to(:clean_arrival_time) }
+  it "should remove timestamps, year and seconds from arrival time" do
+    order = FactoryGirl.create(:order)
+    expect(order.clean_arrival_time).to eql('01-04 01:55PM')
+  end
 end

@@ -23,7 +23,7 @@ feature 'worker only sees non completed orders' do
     expect(page).to have_content order.food.name
     expect(page).to have_content order.user.first_name
     expect(page).to have_content order.user.last_name
-    expect(page).to have_content order.arrival_time
+    expect(page).to have_content order.clean_arrival_time
     click_on 'Completed'
     visit root_path
     click_on 'View Sections'
@@ -33,7 +33,7 @@ feature 'worker only sees non completed orders' do
     expect(page).to_not have_content order.food.name
     expect(page).to_not have_content order.user.first_name
     expect(page).to_not have_content order.user.last_name
-    expect(page).to_not have_content order.arrival_time
+    expect(page).to_not have_content order.clean_arrival_time
   end
 
   scenario 'worker only sees today uncompleted orders' do
@@ -47,7 +47,7 @@ feature 'worker only sees non completed orders' do
     expect(page).to have_content order.food.name
     expect(page).to have_content order.user.first_name
     expect(page).to have_content order.user.last_name
-    expect(page).to have_content order.arrival_time
+    expect(page).to have_content order.clean_arrival_time
     Timecop.return
     visit root_path
     click_on 'View Sections'
@@ -57,7 +57,7 @@ feature 'worker only sees non completed orders' do
     expect(page).to_not have_content order.food.name
     expect(page).to_not have_content order.user.first_name
     expect(page).to_not have_content order.user.last_name
-    expect(page).to_not have_content order.arrival_time
+    expect(page).to_not have_content order.clean_arrival_time
   end
 
   scenario 'worker can set order to in progress' do
@@ -71,7 +71,7 @@ feature 'worker only sees non completed orders' do
     expect(page).to have_content order.food.name
     expect(page).to have_content order.user.first_name
     expect(page).to have_content order.user.last_name
-    expect(page).to have_content order.arrival_time
+    expect(page).to have_content order.clean_arrival_time
     click_on 'In Progress'
   end
 end

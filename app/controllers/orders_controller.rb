@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
       @orders = Section.find(params[:section_id]).todays_orders
       @current_section = Section.find(params[:section_id])
     else
+      @current_orders = current_user.todays_uncompleted_orders
       @orders = current_user.orders
     end
   end

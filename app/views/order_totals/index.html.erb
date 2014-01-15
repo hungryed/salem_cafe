@@ -6,7 +6,7 @@
   <% end %>
   <% @orders.each do |order| %>
     <%= order.food.name %>
-    <%= order.arrival_time %>
+    <%= order.clean_arrival_time %>
     <%= order.section.name %>
     <br>
   <% end %>

@@ -1,9 +1,4 @@
 <%= simple_form_for [current_user, @order], html: { class: "content", id: "section-#{section.id}" } do |f| %>
-  <% if @order.errors.any? %>
-    <% @order.errors.each do |name, error| %>
-      <%= error %>
-    <% end %>
-  <% end %>
   <%= section.name %>
   <%= hidden_field_tag 'section_id' , section.id %>
   <%= f.input :food_id, label: 'Food', collection: section.foods, label_method: :name %>

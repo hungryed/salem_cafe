@@ -40,15 +40,14 @@ feature 'user places an order' do
       click_on 'Order Food'
       click_on section.name
       within '#order_arrival_time_4i' do
-        select '11'
+        select '11 AM'
       end
       within '#order_arrival_time_5i' do
-        select '10'
+        select '00'
       end
       click_on 'Create Order'
 
       expect(page).to have_content 'Arrival must be a future time'
-      expect(page).to_not have_content 'Order Food'
     end
   end
 
@@ -92,10 +91,9 @@ feature 'user places an order' do
     within '#order_arrival_time_4i' do
       select '11 AM'
     end
-    click_on 'Update Order'
+    click_button 'Update Order'
 
-    expect(page).to have_content "can't be blank"
     expect(page).to have_content 'Arrival must be a future time'
-
+    expect(page).to have_content "can't be blank"
   end
 end

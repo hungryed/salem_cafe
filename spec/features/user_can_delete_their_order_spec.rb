@@ -15,7 +15,7 @@ feature 'user can delete their order' do
     click_on 'My Order'
 
     expect(page).to have_content order.food.name
-    expect(page).to have_content order.arrival_time
+    expect(page).to have_content order.clean_arrival_time
   end
 
   scenario 'user deletes their order' do
@@ -23,14 +23,14 @@ feature 'user can delete their order' do
     sign_in_as(order.user)
     click_on 'My Orders'
     expect(page).to have_content order.food.name
-    expect(page).to have_content order.arrival_time
+    expect(page).to have_content order.clean_arrival_time
     click_on 'Cancel Order'
     expect(page).to have_content 'Order cancelled'
     expect(page).to have_content 'Order Food'
     click_on 'My Order'
 
     expect(page).to_not have_content order.food.name
-    expect(page).to_not have_content order.arrival_time
+    expect(page).to_not have_content order.clean_arrival_time
   end
 
   scenario 'users can only delete their own orders' do

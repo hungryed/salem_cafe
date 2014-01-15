@@ -24,7 +24,7 @@ feature 'workers can see orders for their sections' do
     expect(page).to have_content order.food.name
     expect(page).to have_content order.user.first_name
     expect(page).to have_content order.user.last_name
-    expect(page).to have_content order.arrival_time
+    expect(page).to have_content order.clean_arrival_time
   end
 
   scenario 'authenticated worker sees specific order' do
@@ -41,17 +41,17 @@ feature 'workers can see orders for their sections' do
     expect(page).to have_content order2.user.first_name
     expect(page).to have_content order.user.last_name
     expect(page).to have_content order2.user.last_name
-    expect(page).to have_content order.arrival_time
-    expect(page).to have_content order2.arrival_time
-    click_on order.arrival_time
+    expect(page).to have_content order.clean_arrival_time
+    expect(page).to have_content order2.clean_arrival_time
+    click_on order.clean_arrival_time
     expect(page).to have_content order.food.name
     expect(page).to_not have_content order2.food.name
     expect(page).to have_content order.user.first_name
     expect(page).to_not have_content order2.user.first_name
     expect(page).to have_content order.user.last_name
     expect(page).to_not have_content order2.user.last_name
-    expect(page).to have_content order.arrival_time
-    expect(page).to_not have_content order2.arrival_time
+    expect(page).to have_content order.clean_arrival_time
+    expect(page).to_not have_content order2.clean_arrival_time
   end
 
   scenario 'authenticated worker only sees todays orders' do
@@ -66,7 +66,7 @@ feature 'workers can see orders for their sections' do
     expect(page).to_not have_content order.food.name
     expect(page).to_not have_content order.user.first_name
     expect(page).to_not have_content order.user.last_name
-    expect(page).to_not have_content order.arrival_time
+    expect(page).to_not have_content order.clean_arrival_time
   end
 
   scenario "non-worker can't visit section to see orders" do

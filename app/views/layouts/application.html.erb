@@ -13,37 +13,63 @@
 
   <body>
     <nav class='top-bar'>
-      <div class="row">
-        <ul class="left">
-          <li>
-            <%= link_to 'Salem Cafe', root_path, class: "button" %>
-          </li>
-        </ul>
-        <ul class="right">
-          <li class=>
-            <% if user_signed_in? %>
-              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "small button" %>
-            <% else %>
-              <%= link_to 'Sign Up', new_user_registration_path, class: "small button" %>
-              <%= link_to 'Sign In', new_user_session_path, class: "small button" %>
-            <% end %>
-          </li>
-        </ul>
-      </div>
+      <ul class="left">
+        <li>
+          <%= link_to 'Salem Cafe', root_path, class: "button" %>
+        </li>
+      </ul>
+      <ul class="right">
+        <li class=>
+          <% if user_signed_in? %>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "small button" %>
+          <% else %>
+            <%= link_to 'Sign Up', new_user_registration_path, class: "small button" %>
+            <%= link_to 'Sign In', new_user_session_path, class: "small button" %>
+          <% end %>
+        </li>
+      </ul>
     </nav>
 
     <div class='row'>
-    <% flash.each do |name, msg| %>
-      <%= msg %>
-    <% end %>
+      <% if flash.any? %>
+        <div data-alert class="alert-box">
+          <% flash.each do |name, msg| %>
+            <%= msg %>
+          <% end %>
+        </div>
+      <% end %>
 
-      <%= yield %>
+      <div class="small-2 large-2 columns">
+        <dl class="sidebar" >
+          <% if user_signed_in? %>
+            <% if current_user.is_admin? %>
+              <dd><%= link_to 'Add Section', new_section_path %></dd>
+              <dd><%= link_to "See Order Totals", order_totals_path %></dd>
+            <% end %>
+            <% if current_user.is_employee? %>
+
+            <% else %>
+              <dd><%= link_to 'Order Food', new_user_order_path(current_user) %></dd>
+              <dd><%= link_to 'My Orders', user_orders_path(current_user) %></dd>
+            <% end %>
+          <% else %>
+            <dd><%= link_to 'Order Food', new_user_session_path %></dd>
+          <% end %>
+          <dd><%= link_to 'View Sections', sections_path %>
+        </dl>
+      </div>
+
+      <div class="small-9 large-10 columns">
+        <%= yield %>
+      </div>
     </div>
-    <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
 
     <footer>
       <%= link_to 'Contact Us', new_contact_path %>
     </footer>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+
+
   </body>
 </html>

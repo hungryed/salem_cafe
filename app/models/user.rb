@@ -9,9 +9,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def todays_uncompleted_orders
-    orders.map do |order|
+    @orders = orders.map do |order|
       order if order.arrival_time.today? && order.status != 'complete'
     end
+    @orders.delete(nil)
+    @orders
   end
 
   def is_employee?

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :section do
-    name 'Deli'
+    sequence(:name) {|n| "D#{n}li"}
     description 'Cold or Hot Sandwiches'
 
     start_time "11:00"

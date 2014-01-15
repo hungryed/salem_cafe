@@ -1,10 +1,14 @@
 <% if current_user.is_employee? %>
   <%= @current_section.name %>
   <% @orders.each do |order| %>
-    <%= order.food.name %>
-    <%= order.user.first_name %>
-    <%= order.user.last_name %>
-    <%= link_to order.arrival_time, section_order_path(@current_section, order) %>
+    <div id="myModal<%= order.id %>" class="reveal-modal" data-reveal>
+      <h1><%= order.food.name %></h1>
+      <%= order.user.first_name %>
+      <%= order.user.last_name %>
+      <%= link_to order.clean_arrival_time, section_order_path(@current_section, order) %>
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
+    <%= link_to "Click me for order #{order.id}", '#', data: {:"reveal-id" => "myModal#{order.id}"} %>
 
     <%= form_for [order.user, order], url: user_order_path(order.user, order), method: :patch do |t| %>
       <%= t.hidden_field :status, value: "in progress" %>
@@ -18,18 +22,18 @@
     <br>
   <% end %>
 <% else %>
-  <% if !current_user.todays_uncompleted_orders.nil? %>
-    <% current_user.todays_uncompleted_orders.each do |order| %>
+  <% if !@current_orders.empty? %>
+    <% @current_orders.each do |order| %>
       <%= order.food.name %>
-      <%= order.arrival_time %>
+      <%= order.clean_arrival_time %>
       <%= link_to 'Edit Order', edit_user_order_path(current_user, order) %>
       <%= link_to 'Cancel Order', user_order_path(current_user, order), method: :delete %>
     <% end %>
   <% end %>
   <br>
   <% @orders.each do |order| %>
-    <%= order.food.name %>
-    <%= order.arrival_time %>
+      <%= order.food.name %>
+      <%= order.clean_arrival_time %>
     <br>
   <% end %>
 <% end %>

@@ -21,7 +21,7 @@ feature 'admin sees all orders for day' do
       click_on "See Order Totals"
       click_on "Today's Orders"
       expect(page).to have_content order.food.name
-      expect(page).to have_content order.arrival_time
+      expect(page).to have_content order.clean_arrival_time
       expect(page).to have_content order.section.name
     end
 
@@ -32,12 +32,12 @@ feature 'admin sees all orders for day' do
       click_on "See Order Totals"
       click_on "Today's Orders"
       expect(page).to have_content order.food.name
-      expect(page).to have_content order.arrival_time
+      expect(page).to have_content order.clean_arrival_time
       expect(page).to have_content order.section.name
       Timecop.return
       visit order_totals_path
       expect(page).to_not have_content order.food.name
-      expect(page).to_not have_content order.arrival_time
+      expect(page).to_not have_content order.clean_arrival_time
       expect(page).to_not have_content order.section.name
     end
 
@@ -54,7 +54,7 @@ feature 'admin sees all orders for day' do
       select '10', from: "order_date_params_end_date_3i"
       click_on "See Orders in Date Range"
       expect(page).to have_content order.food.name
-      expect(page).to have_content order.arrival_time
+      expect(page).to have_content order.clean_arrival_time
       expect(page).to have_content order.section.name
       select '2014', from: "order_date_params_start_date_1i"
       select 'January', from: "order_date_params_start_date_2i"
@@ -64,7 +64,7 @@ feature 'admin sees all orders for day' do
       select '3', from: "order_date_params_end_date_3i"
       click_on "See Orders in Date Range"
       expect(page).to_not have_content order.food.name
-      expect(page).to_not have_content order.arrival_time
+      expect(page).to_not have_content order.clean_arrival_time
       expect(page).to_not have_content order.section.name
     end
   end

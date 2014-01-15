@@ -1,1 +1,8 @@
+<% if @order.errors.any? %>
+  <div data-alert class="alert-box warning round">
+    <% @order.errors.each do |name, error| %>
+      <%= error %>
+    <% end %>
+  </div>
+<% end %>
 <%= render 'order_form', section: @order.section %>
