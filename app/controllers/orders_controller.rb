@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   def index
     if current_user.is_employee?
-      @orders = Section.find(params[:section_id]).todays_orders
+      @orders = Section.todays_orders(params[:section_id], params[:page])
       @current_section = Section.find(params[:section_id])
     else
       @current_orders = current_user.todays_uncompleted_orders
@@ -52,13 +52,18 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @section = Section.find(@order.section)
     if current_user.is_employee?
+
       @order.arrival_time = Time.now + 30.seconds
       @order.status = params[:order][:status]
+      respond_to do |format|
+        if @order.update(order_params)
+          format.html { redirect_to section_orders_path(@section) }
+          format.json { render json: @order }
+        else
+          format.html { redirect_to section_orders_path(@section), notice: 'There was an error.' }
+          format.json { render json: @order.errors, status: :unpocessable_entity }
 
-      if @order.update(order_params)
-        redirect_to section_orders_path(@section)
-      else
-        redirect_to section_orders_path(@section), notice: 'There was an error.'
+        end
       end
     else
       if @order.update(order_params)

@@ -15,4 +15,26 @@
 //= require foundation
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){
+  $(document).foundation();
+
+  //$('[section-order-id]').on('click', '[data-order-complete-button="complete"]', function(event) {
+  $('.order-actions a').on('click', function(event) {
+
+    event.preventDefault();
+    $target = $(event.target);
+    var url = $target.attr('href');
+
+    $.ajax({
+      type: "PUT",
+      url: url,
+      dataType: "json",
+      success: function(order) {
+        $target.closest('.full-order').fadeOut(1000);
+      },
+      failure: function(data) {
+        console.log(data);
+      }
+    });
+  });
+});

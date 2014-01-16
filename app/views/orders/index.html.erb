@@ -2,46 +2,45 @@
   <h3><%= @current_section.name %></h3>
 
   <% @orders.each do |order| %>
-    <div id="myModal<%= order.id %>" class="reveal-modal" data-reveal>
-      <h1><%= order.food.name %></h1>
-      <h3><%= order.user.first_name %>
-      <%= order.user.last_name %></h3><br>
-      <h4><%= link_to order.clean_arrival_time, section_order_path(@current_section, order) %></h4>
-      <a class="close-reveal-modal">&#215;</a>
-    </div>
+    <div class="full-order" section-order-id="<%= order.id %>">
+      <div id="myModal<%= order.id %>" class="reveal-modal" data-reveal>
+        <h1><%= order.food.name %></h1>
+        <h3><%= order.user.first_name %>
+        <%= order.user.last_name %></h3><br>
+        <h4><%= link_to order.clean_arrival_time, section_order_path(@current_section, order) %></h4>
+        <a class="close-reveal-modal">&#215;</a>
+      </div>
 
-    <div class="order">
-      <div class="row">
-        <div class="small-12 medium-9 columns">
-          <%= link_to '#',
-            data: { :"reveal-id" => "myModal#{order.id}"} do %>
+      <div class="order">
+        <div class="row">
+          <div class="small-12 medium-9 columns">
+            <%= link_to '#',
+              data: { :"reveal-id" => "myModal#{order.id}"} do %>
 
-            <h4><%= order.food.name %></h4>
-            <p><%= [order.user.first_name, order.user.last_name].join(' ') %></p>
-            <p><%= order.clean_arrival_time %></p>
-          <% end %>
-        </div>
+              <h4><%= order.food.name %></h4>
+              <p><%= [order.user.first_name, order.user.last_name].join(' ') %></p>
+              <p><%= order.clean_arrival_time %></p>
+            <% end %>
+          </div>
 
-        <div class="small-12 medium-3 columns">
-          <ul class="order-actions">
-            <li>
-              <%= form_for [order.user, order], url: user_order_path(order.user, order), method: :patch do |t| %>
-                <%= t.hidden_field :status, value: "in progress" %>
-                <%= t.submit "In Progress", class: "button alert expand" %>
-              <% end %>
-            </li>
-
-            <li>
-              <%= form_for [order.user, order], url: user_order_path(order.user, order), method: :patch do |t| %>
-                <%= t.hidden_field :status, value: "completed"%>
-                <%= t.submit "Completed", class: "button success expand", id: "completed_#{order.id}" %>
-              <% end %>
-            </li>
-          </ul>
+          <div class="small-12 medium-3 columns">
+            <ul class="order-actions">
+              <li>
+                <%= form_for [order.user, order], url: user_order_path(order.user, order), method: :patch do |t| %>
+                  <%= t.hidden_field :status, value: "in progress" %>
+                  <%= t.submit "In Progress", class: "button alert expand" %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "Completed", user_order_path(order.user, order, params: {order: {status: "completed"}} ), id: "completed_#{order.id}", class: "button success expand" %>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   <% end %>
+  <%= will_paginate @orders %>
 <% else %>
   <% if !@current_orders.empty? %>
     <% @current_orders.each do |order| %>
