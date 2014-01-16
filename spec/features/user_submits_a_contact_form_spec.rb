@@ -7,7 +7,7 @@ feature 'user submits a contact form' do
   let(:user) { FactoryGirl.create(:user) }
   scenario 'user supplies valid information' do
     visit root_path
-    click_on 'Contact Us'
+    click_on "contact_us"
     fill_in 'Email', with: user.email
     fill_in 'First Name', with: user.first_name
     fill_in 'Last Name', with: user.last_name

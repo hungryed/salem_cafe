@@ -6,7 +6,7 @@ feature 'user sees a section' do
 
   scenario 'authenticated user can see section foods' do
     sign_in_as(user)
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on food.section.name
     expect(page).to have_content food.name
     expect(page).to have_content food.description
@@ -14,7 +14,7 @@ feature 'user sees a section' do
 
   scenario 'unauthenticated user can see section foods' do
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on food.section.name
     expect(page).to have_content food.name
     expect(page).to have_content food.description

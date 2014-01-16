@@ -4,7 +4,7 @@ feature 'user signs up' do
 
   scenario 'valid information is supplied' do
     visit root_path
-    click_link 'Sign Up'
+    click_on "sign_up"
     fill_in 'First Name', with: 'John'
     fill_in 'Last Name', with: 'Smith'
     fill_in 'Email', with: 'user@example.com'

@@ -18,7 +18,7 @@ feature 'worker sees orders in the order of arrival time' do
       food: order.food, arrival_time: '11:30')
     order3 = FactoryGirl.create(:order, section: order.section,
       food: order.food, arrival_time: '12:00')
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on order.section.name
     click_on 'Orders'
     order.clean_arrival_time.should_not appear_before(order2.clean_arrival_time)

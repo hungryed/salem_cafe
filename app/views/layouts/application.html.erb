@@ -12,61 +12,108 @@
   </head>
 
   <body>
-    <nav class='top-bar'>
-      <ul class="left">
-        <li>
-          <%= link_to 'Salem Cafe', root_path, class: "button" %>
-        </li>
-      </ul>
-      <ul class="right">
-        <li class=>
-          <% if user_signed_in? %>
-            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "small button" %>
-          <% else %>
-            <%= link_to 'Sign Up', new_user_registration_path, class: "small button" %>
-            <%= link_to 'Sign In', new_user_session_path, class: "small button" %>
-          <% end %>
-        </li>
-      </ul>
-    </nav>
+    <div class="contain-to-grid">
+      <nav class='top-bar hide-for-small' data-topbar>
+        <ul class="title-area">
+          <li class="name">
+            <h1><%= link_to 'Salem Cafe', root_path %></h1>
+          </li>
+        </ul>
+        <section class="top-bar-section">
+          <ul class="right">
+            <% if user_signed_in? %>
+              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, id: "sign_out" %></li>
+            <% else %>
+              <li><%= link_to 'Sign Up', new_user_registration_path, id: "sign_up" %></li>
+              <li><%= link_to 'Sign In', new_user_session_path, id: "sign_in" %></li>
+            <% end %>
+          </ul>
+         </section>
+      </nav>
 
+      <nav class="top-bar show-for-small" data-topbar>
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="#">Salem Cafe</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+        </ul>
+
+        <section class="top-bar-section">
+          <ul class="right">
+            <li class="has-dropdown">
+              <a href="#">Options</a>
+              <ul class="dropdown">
+                <% if user_signed_in? %>
+                  <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+                <% else %>
+                  <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+                  <li><%= link_to 'Sign In', new_user_session_path %></li>
+                <% end %>
+                <% if user_signed_in? %>
+                  <% if current_user.is_admin? %>
+                    <li><%= link_to 'Add Section', new_section_path %></li>
+                    <li><%= link_to "See Order Totals", order_totals_path %></li>
+                  <% end %>
+                  <% if current_user.is_employee? %>
+
+                  <% else %>
+                    <li><%= link_to 'Order Food', new_user_order_path(current_user) %></li>
+                    <li><%= link_to 'My Orders', user_orders_path(current_user) %></li>
+                  <% end %>
+                <% else %>
+                  <li><%= link_to 'Order Food', new_user_session_path %></li>
+                <% end %>
+                <li><%= link_to 'View Sections', sections_path %></li>
+                <li><%= link_to 'Contact Us', new_contact_path %></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </nav>
+    </div>
     <div class='row'>
       <% if flash.any? %>
-        <div data-alert class="alert-box">
+        <div data class="alert-box alert">
           <% flash.each do |name, msg| %>
             <%= msg %>
           <% end %>
+          <a href="#" class="close">&times;</a>
         </div>
       <% end %>
 
-      <div class="small-2 large-2 columns">
-        <dl class="sidebar" >
+      <div class="medium-2 columns hide-for-small">
+        <dl class="side-nav" >
           <% if user_signed_in? %>
             <% if current_user.is_admin? %>
-              <dd><%= link_to 'Add Section', new_section_path %></dd>
-              <dd><%= link_to "See Order Totals", order_totals_path %></dd>
+              <dd><%= link_to 'Add Section', new_section_path, id: "add_section" %></dd>
+              <dd><%= link_to "See Order Totals", order_totals_path, id: "see_order_totals" %></dd>
             <% end %>
             <% if current_user.is_employee? %>
 
             <% else %>
-              <dd><%= link_to 'Order Food', new_user_order_path(current_user) %></dd>
-              <dd><%= link_to 'My Orders', user_orders_path(current_user) %></dd>
+              <dd><%= link_to 'Order Food', new_user_order_path(current_user), id: "order_food" %></dd>
+              <dd><%= link_to 'My Orders', user_orders_path(current_user), id: "my_orders" %></dd>
             <% end %>
           <% else %>
-            <dd><%= link_to 'Order Food', new_user_session_path %></dd>
+            <dd><%= link_to 'Order Food', new_user_session_path, id: "order_food" %></dd>
           <% end %>
-          <dd><%= link_to 'View Sections', sections_path %>
+          <dd><%= link_to 'View Sections', sections_path, id: "view_sections" %></dd>
         </dl>
       </div>
 
-      <div class="small-9 large-10 columns">
+      <div class="small-12 medium-10 columns">
         <%= yield %>
       </div>
     </div>
 
-    <footer>
-      <%= link_to 'Contact Us', new_contact_path %>
-    </footer>
+    <div class="footer-bottom">
+      <div class="row">
+        <footer class="medium-2 columns hide-for-small">
+          <%= link_to 'Contact Us', new_contact_path, id: "contact_us" %>
+        </footer>
+      </div>
+    </div>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
 

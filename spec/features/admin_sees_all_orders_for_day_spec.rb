@@ -18,7 +18,7 @@ feature 'admin sees all orders for day' do
       admin_sign_in_as(admin)
       visit root_path
       order
-      click_on "See Order Totals"
+      click_on "see_order_totals"
       click_on "Today's Orders"
       expect(page).to have_content order.food.name
       expect(page).to have_content order.clean_arrival_time
@@ -29,7 +29,7 @@ feature 'admin sees all orders for day' do
       admin_sign_in_as(admin)
       visit root_path
       order
-      click_on "See Order Totals"
+      click_on "see_order_totals"
       click_on "Today's Orders"
       expect(page).to have_content order.food.name
       expect(page).to have_content order.clean_arrival_time
@@ -45,7 +45,7 @@ feature 'admin sees all orders for day' do
       admin_sign_in_as(admin)
       visit root_path
       order
-      click_on "See Order Totals"
+      click_on "see_order_totals"
       select '2014', from: "order_date_params_start_date_1i"
       select 'January', from: "order_date_params_start_date_2i"
       select '2', from: "order_date_params_start_date_3i"

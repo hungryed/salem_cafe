@@ -10,7 +10,7 @@ feature 'admin creates a section' do
     scenario 'with valid attributes' do
       admin_sign_in_as(admin)
       visit root_path
-      click_on 'Add Section'
+      click_on "add_section"
       fill_in 'Name', with: 'Grill'
       fill_in 'Description', with: 'Hot Cooked foods'
       select '11 AM' , from: 'Start Time'
@@ -18,7 +18,7 @@ feature 'admin creates a section' do
       click_on 'Create Section'
 
       expect(page).to have_content 'Section added successfully'
-      click_on 'View Sections'
+      click_on "view_sections"
       expect(page).to have_content 'Grill'
       expect(page).to have_content 'Hot Cooked foods'
     end
@@ -26,7 +26,7 @@ feature 'admin creates a section' do
     scenario 'without valid attributes' do
       admin_sign_in_as(admin)
       visit root_path
-      click_on 'Add Section'
+      click_on "add_section"
       click_on 'Create Section'
 
       expect_presence_error_for('section', :name)
@@ -49,7 +49,7 @@ feature 'admin creates a section' do
     scenario "normal users can view a section" do
       sign_in_as(user)
       visit root_path
-      click_on 'View Sections'
+      click_on "view_sections"
 
       expect(page).to have_content section.name
 
@@ -69,7 +69,7 @@ feature 'admin creates a section' do
     scenario "worker can view a section" do
       worker_sign_in_as(worker)
       visit root_path
-      click_on 'View Sections'
+      click_on "view_sections"
 
       expect(page).to have_content section.name
 

@@ -4,11 +4,11 @@ feature 'user can sign out' do
   scenario 'already active user signs out' do
     user = FactoryGirl.create(:user)
     visit root_path
-    click_on 'Sign In'
+    click_on "sign_in"
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Sign In'
-    click_link 'Sign Out'
+    click_on "sign_out"
 
     expect(page).to have_content 'Signed out successfully'
     expect(page).to have_content 'Sign In'

@@ -17,7 +17,7 @@ feature 'workers can see orders for their sections' do
     worker_sign_in_as(worker)
     order.section.save
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on "section_#{order.section.id}"
     click_on 'Orders'
     expect(page).to have_content order.section.name
@@ -32,7 +32,7 @@ feature 'workers can see orders for their sections' do
     order2 = FactoryGirl.create(:order, section: order.section,
         arrival_time: '12:30')
     order.section.save
-    click_on "View Sections"
+    click_on "view_sections"
     click_on "section_#{order.section.id}"
     click_on 'Orders'
     expect(page).to have_content order.food.name

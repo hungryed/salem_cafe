@@ -51,11 +51,21 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @section = Section.find(@order.section)
+    if current_user.is_employee?
+      @order.arrival_time = Time.now + 30.seconds
+      @order.status = params[:order][:status]
 
-    if @order.update(order_params)
-      redirect_to root_path, notice: 'Order changed successfully'
+      if @order.update(order_params)
+        redirect_to section_orders_path(@section)
+      else
+        redirect_to section_orders_path(@section), notice: 'There was an error.'
+      end
     else
-      render :edit
+      if @order.update(order_params)
+        redirect_to root_path, notice: 'Order changed successfully'
+      else
+        render :edit
+      end
     end
   end
 

@@ -1,7 +1,7 @@
 module Authentication
   def sign_in_as(user)
     visit root_path
-    click_on 'Sign In'
+    click_on "sign_in"
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Sign In'
@@ -9,7 +9,7 @@ module Authentication
 
   def sign_up_as(user)
     visit root_path
-    click_on 'Sign Up'
+    click_on "sign_up"
     fill_in 'First Name', with: user.first_name
     fill_in 'Last Name', with: user.last_name
     fill_in 'Email', with: user.email
@@ -20,7 +20,7 @@ module Authentication
 
   def worker_sign_in_as(user)
     visit root_path
-    click_on 'Sign In'
+    click_on "sign_in"
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Sign In'
@@ -30,7 +30,7 @@ module Authentication
 
   def admin_sign_in_as(user)
     visit root_path
-    click_on 'Sign In'
+    click_on "sign_in"
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Sign In'

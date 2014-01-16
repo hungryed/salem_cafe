@@ -17,7 +17,7 @@ feature 'user places an order' do
       food_category = FactoryGirl.create(:food_category, section: section)
       food = FactoryGirl.create(:food, food_category: food_category)
       sign_in_as(user)
-      click_on 'Order Food'
+      click_on "order_food"
       click_on section.name
       select food.name, from: 'Food'
       within '#order_arrival_time_4i' do
@@ -37,7 +37,7 @@ feature 'user places an order' do
       food_category = FactoryGirl.create(:food_category, section: section)
       food = FactoryGirl.create(:food, food_category: food_category)
       sign_in_as(user)
-      click_on 'Order Food'
+      click_on "order_food"
       click_on section.name
       within '#order_arrival_time_4i' do
         select '11 AM'
@@ -53,7 +53,7 @@ feature 'user places an order' do
 
   scenario "unauthenticated user can't place an order" do
     visit root_path
-    click_on 'Order Food'
+    click_on "order_food"
     expect(page).to have_content 'Sign Up'
   end
 
@@ -64,7 +64,7 @@ feature 'user places an order' do
     user = order.user
     sign_in_as(user)
     visit root_path
-    click_on 'My Orders'
+    click_on "my_orders"
     expect(page).to have_content order.food.name
     click_on 'Edit Order'
     within '#order_arrival_time_4i' do
@@ -83,7 +83,7 @@ feature 'user places an order' do
     user = order.user
     sign_in_as(user)
     visit root_path
-    click_on 'My Orders'
+    click_on "my_orders"
     expect(page).to have_content order.food.name
     Timecop.freeze(2014,1,4,12,0,0)
     click_on 'Edit Order'

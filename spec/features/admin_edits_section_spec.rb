@@ -9,7 +9,7 @@ feature 'admin edits section' do
   scenario 'admin submits valid information' do
     admin_sign_in_as(admin)
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on 'Edit'
     fill_in 'Name', with: 'Hot Line'
     fill_in 'Description', with: 'Tasty foods'
@@ -24,7 +24,7 @@ feature 'admin edits section' do
   scenario 'admin submits invalid information' do
     admin_sign_in_as(admin)
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on 'Edit'
     fill_in 'Name', with: ''
     fill_in 'Description', with: ''
@@ -37,7 +37,7 @@ feature 'admin edits section' do
   scenario "worker can't edit sections" do
     worker_sign_in_as(worker)
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     expect(page).to_not have_content 'Edit'
     expect{ visit edit_sections_path(section) }.to raise_error
   end
@@ -45,7 +45,7 @@ feature 'admin edits section' do
   scenario "customer can't edit sections" do
     sign_in_as(user)
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     expect(page).to_not have_content 'Edit'
     expect{ visit edit_sections_path(section) }.to raise_error
   end

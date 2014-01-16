@@ -9,7 +9,7 @@ feature 'worker modifies food' do
     scenario 'creates food with valid attributes' do
       worker_sign_in_as(worker)
       visit root_path
-      click_on 'View Sections'
+      click_on "view_sections"
       click_on food_category.section.name
       click_on 'Add Food'
       fill_in 'Name', with: 'Ham'
@@ -23,7 +23,7 @@ feature 'worker modifies food' do
     scenario 'creates food with invalid attributes' do
       worker_sign_in_as(worker)
       visit root_path
-      click_on 'View Sections'
+      click_on "view_sections"
       click_on food_category.section.name
       click_on 'Add Food'
       click_on 'Create Food'
@@ -36,7 +36,7 @@ feature 'worker modifies food' do
       food = FactoryGirl.create(:food, food_category: food_category)
       worker_sign_in_as(worker)
       visit root_path
-      click_on 'View Sections'
+      click_on "view_sections"
       click_on food_category.section.name
       click_on food.name
       click_on 'Edit'
@@ -51,7 +51,7 @@ feature 'worker modifies food' do
       food = FactoryGirl.create(:food, food_category: food_category)
       worker_sign_in_as(worker)
       visit root_path
-      click_on 'View Sections'
+      click_on "view_sections"
       click_on food_category.section.name
       click_on food.name
       click_on 'Edit'
@@ -70,7 +70,7 @@ feature 'worker modifies food' do
       food = FactoryGirl.create(:food)
       sign_in_as(user)
       visit root_path
-      click_on 'View Sections'
+      click_on "view_sections"
       click_on "section_#{food.section.id}"
       click_on food.name
 
@@ -83,12 +83,12 @@ feature 'worker modifies food' do
       food = FactoryGirl.create(:food)
       sign_in_as(user)
       visit root_path
-      click_on 'View Sections'
+      click_on "view_sections"
       click_on "section_#{food.section.id}"
 
       expect(page).to have_content food.name
       click_on food.name
-      save_and_open_page
+
       expect(page).to have_content food.name
       expect(page).to have_content food.description
       expect(page).to have_content food.section.name

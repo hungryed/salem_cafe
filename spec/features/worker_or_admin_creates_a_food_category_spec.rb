@@ -9,7 +9,7 @@ feature 'worker or admin creates a food category' do
   scenario 'worker for a section creates a category relating to section' do
     worker_sign_in_as(worker)
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on section.name
     click_on 'Food Categories'
     click_on 'Add New Category'
@@ -18,7 +18,7 @@ feature 'worker or admin creates a food category' do
     click_on 'Create Food category'
 
     expect(page).to have_content 'Category created successfully'
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on section.name
     click_on 'Food Categories'
 
@@ -28,7 +28,7 @@ feature 'worker or admin creates a food category' do
   scenario 'admin adds a category to a section' do
     admin_sign_in_as(admin)
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on section.name
     click_on 'Food Categories'
     click_on 'Add New Category'
@@ -37,7 +37,7 @@ feature 'worker or admin creates a food category' do
     click_on 'Create Food category'
 
     expect(page).to have_content 'Category created successfully'
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on section.name
     click_on 'Food Categories'
 
@@ -47,7 +47,7 @@ feature 'worker or admin creates a food category' do
   scenario 'worker fills out form with invalid attributes' do
     worker_sign_in_as(worker)
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on section.name
     click_on 'Food Categories'
     click_on 'Add New Category'
@@ -59,7 +59,7 @@ feature 'worker or admin creates a food category' do
     food_category = FactoryGirl.create(:food_category, section: section)
     worker_sign_in_as(worker)
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on section.name
     click_on 'Food Categories'
     click_on "edit_food_category_#{food_category.id}"
@@ -69,7 +69,7 @@ feature 'worker or admin creates a food category' do
 
     expect(page).to have_content 'Category updated successfully'
 
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on section.name
     click_on 'Food Categories'
 
@@ -81,7 +81,7 @@ feature 'worker or admin creates a food category' do
     food_category = FactoryGirl.create(:food_category, section: section)
     worker_sign_in_as(worker)
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on section.name
     click_on 'Food Categories'
     click_on "edit_food_category_#{food_category.id}"
@@ -91,7 +91,7 @@ feature 'worker or admin creates a food category' do
 
     expect_presence_error_for('food_category', :name)
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on section.name
     click_on 'Food Categories'
 
@@ -102,7 +102,7 @@ feature 'worker or admin creates a food category' do
   scenario "customer can't see category sections pages" do
     sign_in_as(user)
     visit root_path
-    click_on 'View Sections'
+    click_on "view_sections"
     click_on section.name
 
     expect(page).to_not have_content 'Food Categories'

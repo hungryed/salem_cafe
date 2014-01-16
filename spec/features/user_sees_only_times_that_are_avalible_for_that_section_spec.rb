@@ -10,7 +10,7 @@ feature 'user only sees times avalible for that section' do
   scenario 'user visits section order page' do
     sign_in_as(user)
     visit root_path
-    click_on 'Order Food'
+    click_on "order_food"
     expect(page).to have_content 'Breakfast'
     click_on 'Breakfast'
     expect{ select '11', from: "order_arrival_time_4i" }.to raise_error
