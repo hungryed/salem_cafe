@@ -1,16 +1,27 @@
-<%= @section.name %>
-<%= @section.description %>
-<% if user_signed_in? %>
-  <% if current_user.is_employee? %>
-    <%= link_to 'Orders', section_orders_path(@section) %>
-    <%= link_to 'Add Food', new_section_food_path(@section) %>
-    <%= link_to 'Food Categories', section_food_categories_path(@section) %>
-    <% if current_user.is_admin? %>
-      <%= link_to 'Edit', edit_section_path(@section) %>
+<div class="small-8 small-centered">
+  <h1><%= @section.name %></h1>
+  <h3><%= @section.description %></h3>
+  <% if user_signed_in? %>
+    <% if current_user.is_employee? %>
+      <%= link_to 'Orders', section_orders_path(@section) %>
+      <%= link_to 'Add Food', new_section_food_path(@section) %>
+      <%= link_to 'Food Categories', section_food_categories_path(@section) %>
+      <% if current_user.is_admin? %>
+        <%= link_to 'Edit', edit_section_path(@section) %>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
-<% @section.foods.each do |food| %>
-  <%= link_to food.name, section_food_path(@section, food) %>
-  <%= food.description %>
-<% end %>
+</div>
+<div class="small-12 small-centered columns">
+  <h2>Food</h2>
+  <table>
+    <th>Food Item</th>
+    <th>Description</th>
+    <% @section.foods.each do |food| %>
+      <tr>
+        <td><%= link_to food.name, section_food_path(@section, food) %></td>
+        <td><%= food.description %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

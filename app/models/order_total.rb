@@ -5,16 +5,15 @@ class OrderTotal
     @end_date = end_date.to_date
   end
 
-  def find_orders_in_range
-    Order.all.find_all do |order|
-      order.arrival_time.between?(@start_date, @end_date)
-    end
+  def find_orders_in_range(current_page=1)
+    Order.where("arrival_time >= ? AND arrival_time <= ?",
+     @start_date, @end_date).order(:arrival_time)
+    .paginate(per_page: 10, page: current_page)
   end
 
   class << self
     def todays_orders
       orders = OrderTotal.new(Date.today, DateTime.tomorrow)
-      orders.find_orders_in_range
     end
   end
 end

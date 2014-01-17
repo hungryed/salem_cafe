@@ -4,12 +4,21 @@
   <% elsif params[:order_date_params] %>
     <%= line_chart Order.where(arrival_time: @start_date..@end_date).group_by_day(:arrival_time).count %>
   <% end %>
-  <% @orders.each do |order| %>
-    <%= order.food.name %>
-    <%= order.clean_arrival_time %>
-    <%= order.section.name %>
-    <br>
-  <% end %>
+  <table>
+    <tr>
+      <th>Section</th>
+      <th>Food</th>
+      <th>Arrival Time</th>
+    </tr>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.section.name %></td>
+        <td><%= order.food.name %></td>
+        <td><%= order.clean_arrival_time %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate @orders %>
 <% end %>
 
 <%= form_tag(order_totals_path, method: :get) do %>

@@ -34,8 +34,10 @@ describe OrderTotal do
 
   it "finds all orders for today" do
     order
-    expect(OrderTotal.todays_orders).to include(order)
+    orders = OrderTotal.todays_orders
+    expect(orders.find_orders_in_range).to include(order)
     Timecop.return
-    expect(OrderTotal.todays_orders).to_not include(order)
+    orders = OrderTotal.todays_orders
+    expect(orders.find_orders_in_range).to_not include(order)
   end
 end

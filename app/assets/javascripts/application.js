@@ -30,7 +30,26 @@ $(function(){
       url: url,
       dataType: "json",
       success: function(order) {
-        $target.closest('.full-order').fadeOut(500);
+        $target.closest('.order').fadeOut(500);
+      },
+      failure: function(data) {
+        console.log(data);
+      }
+    });
+  });
+
+  $('.order-actions').on('submit', '.order-working-button', function(event) {
+
+    event.preventDefault();
+    $target = $(event.target);
+    var url = $target.attr('action');
+
+    $.ajax({
+      type: "PUT",
+      url: url,
+      dataType: "json",
+      success: function(order) {
+        $target.closest('.order').toggleClass( "order-progress" );
       },
       failure: function(data) {
         console.log(data);
