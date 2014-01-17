@@ -10,16 +10,21 @@
         <h4><%= link_to order.clean_arrival_time, section_order_path(@current_section, order) %></h4>
         <a class="close-reveal-modal">&#215;</a>
       </div>
-
+<!-- include picture of person potentially -->
+<!-- page to show completed orders -->
       <div class="order">
         <div class="row">
           <div class="small-12 medium-9 columns">
             <%= link_to '#',
               data: { :"reveal-id" => "myModal#{order.id}"} do %>
-
-              <h4><%= order.food.name %></h4>
-              <p><%= [order.user.first_name, order.user.last_name].join(' ') %></p>
-              <p><%= order.clean_arrival_time %></p>
+              <div class="small-3 small-left medium-4 medium-left columns">
+                <h4><%= order.food.name %></h4>
+                <p><%= [order.user.first_name, order.user.last_name].join(' ') %></p>
+                <p><%= order.clean_arrival_time %></p>
+              </div>
+              <div class="small-4 small-centered medium-4 medium-centered columns">
+                <%= image_tag order.food.picture_url(:thumb).to_s %>
+              </div>
             <% end %>
           </div>
 
@@ -32,7 +37,12 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to "Completed", user_order_path(order.user, order, params: {order: {status: "completed"}} ), id: "completed_#{order.id}", class: "button success expand" %>
+                <%= button_to "Completed", user_order_path(order.user, order,
+                  params: {order: {status: "completed"}} ),
+                  form: { class: 'order-complete-button' },
+                  id: "completed_#{order.id}",
+                  method: :patch,
+                  class: "button success expand" %>
               </li>
             </ul>
           </div>
@@ -42,18 +52,45 @@
   <% end %>
   <%= will_paginate @orders %>
 <% else %>
-  <% if !@current_orders.empty? %>
-    <% @current_orders.each do |order| %>
-      <%= order.food.name %>
-      <%= order.clean_arrival_time %>
-      <%= link_to 'Edit Order', edit_user_order_path(current_user, order) %>
-      <%= link_to 'Cancel Order', user_order_path(current_user, order), method: :delete %>
+  <div class="small-12 small-centered medium-9 columns">
+    <% if !@current_orders.empty? %>
+      <h1>Current Orders</h1>
+      <table>
+        <tr>
+          <th>Section</th>
+          <th>Food Item</th>
+          <th>Arrival Time</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <% @current_orders.each do |order| %>
+          <tr>
+            <td><%= order.section.name %></td>
+            <td><%= order.food.name %></td>
+            <td><%= order.clean_arrival_time %></td>
+            <td><%= link_to 'Edit Order', edit_user_order_path(current_user, order) %></td>
+            <td><%= link_to 'Cancel Order', user_order_path(current_user, order), method: :delete %></td>
+          </tr>
+        <% end %>
+      </table>
+      <%= will_paginate @current_orders %>
     <% end %>
-  <% end %>
-  <br>
-  <% @orders.each do |order| %>
-      <%= order.food.name %>
-      <%= order.clean_arrival_time %>
     <br>
-  <% end %>
+    <h1>Previous Orders</h1>
+    <table>
+      <tr>
+        <th>Section</th>
+        <th>Food Item</th>
+        <th>Arrival Time</th>
+      </tr>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.section.name %></td>
+            <td><%= order.food.name %></td>
+            <td><%= order.clean_arrival_time %></td>
+          </tr>
+        <% end %>
+    </table>
+    <%= will_paginate @orders %>
+  </div>
 <% end %>

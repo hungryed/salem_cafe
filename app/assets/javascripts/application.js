@@ -19,18 +19,18 @@ $(function(){
   $(document).foundation();
 
   //$('[section-order-id]').on('click', '[data-order-complete-button="complete"]', function(event) {
-  $('.order-actions a').on('click', function(event) {
+  $('.order-actions').on('submit', '.order-complete-button', function(event) {
 
     event.preventDefault();
     $target = $(event.target);
-    var url = $target.attr('href');
+    var url = $target.attr('action');
 
     $.ajax({
       type: "PUT",
       url: url,
       dataType: "json",
       success: function(order) {
-        $target.closest('.full-order').fadeOut(1000);
+        $target.closest('.full-order').fadeOut(500);
       },
       failure: function(data) {
         console.log(data);
@@ -38,3 +38,4 @@ $(function(){
     });
   });
 });
+//change color of panel when order is in progress

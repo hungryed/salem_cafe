@@ -8,12 +8,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  def todays_uncompleted_orders
-    @orders = orders.map do |order|
-      order if order.arrival_time.today? && order.status != 'complete'
-    end
-    @orders.delete(nil)
-    @orders
+  def todays_uncompleted_orders(current_page=1)
+    Order.where("user_id = #{self.id} AND status != ? AND status IS NOT NULL AND arrival_time >= ?",
+     'completed', Date.today.to_datetime).order(arrival_time: :desc)
+      .paginate(per_page: 10, page: current_page)
+  end
+
+  def all_orders(current_page=1)
+    Order.where("user_id = #{self.id} AND status = ? AND status IS NOT NULL", 'completed')
+    .order(arrival_time: :desc).paginate(per_page: 10, page: current_page)
   end
 
   def is_employee?

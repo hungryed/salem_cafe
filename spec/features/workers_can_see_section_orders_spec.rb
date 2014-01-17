@@ -75,7 +75,7 @@ feature 'workers can see orders for their sections' do
     visit root_path
     expect(page).to_not have_content 'See Orders'
     visit "/sections/#{order.section.id}/orders"
-    expect(page).to_not have_content order.section.name
+
     expect(page).to_not have_content order.user.first_name
     expect(page).to_not have_content order.user.last_name
   end

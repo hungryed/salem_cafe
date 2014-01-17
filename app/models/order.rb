@@ -9,9 +9,9 @@ class Order < ActiveRecord::Base
   validates_presence_of :user
   validates_presence_of :food
   validates_presence_of :arrival_time
-  # validates_datetime :arrival_time,
-  #   between: ['7:00am', '2:00pm']
-  # validates_futureness_of :arrival_time
+  validates_datetime :arrival_time,
+    between: ['7:00am', '2:00pm']
+  validates_futureness_of :arrival_time
   validates_presence_of :section
 
   def completed?
