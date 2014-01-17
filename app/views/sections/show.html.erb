@@ -5,6 +5,9 @@
     <%= link_to 'Orders', section_orders_path(@section) %>
     <%= link_to 'Add Food', new_section_food_path(@section) %>
     <%= link_to 'Food Categories', section_food_categories_path(@section) %>
+    <% if current_user.is_admin? %>
+      <%= link_to 'Edit', edit_section_path(@section) %>
+    <% end %>
   <% end %>
 <% end %>
 <% @section.foods.each do |food| %>

@@ -10,6 +10,7 @@ feature 'admin edits section' do
     admin_sign_in_as(admin)
     visit root_path
     click_on "view_sections"
+    click_on section.name
     click_on 'Edit'
     fill_in 'Name', with: 'Hot Line'
     fill_in 'Description', with: 'Tasty foods'
@@ -25,6 +26,7 @@ feature 'admin edits section' do
     admin_sign_in_as(admin)
     visit root_path
     click_on "view_sections"
+    click_on section.name
     click_on 'Edit'
     fill_in 'Name', with: ''
     fill_in 'Description', with: ''
@@ -38,6 +40,7 @@ feature 'admin edits section' do
     worker_sign_in_as(worker)
     visit root_path
     click_on "view_sections"
+    click_on section.name
     expect(page).to_not have_content 'Edit'
     expect{ visit edit_sections_path(section) }.to raise_error
   end
@@ -46,6 +49,7 @@ feature 'admin edits section' do
     sign_in_as(user)
     visit root_path
     click_on "view_sections"
+    click_on section.name
     expect(page).to_not have_content 'Edit'
     expect{ visit edit_sections_path(section) }.to raise_error
   end

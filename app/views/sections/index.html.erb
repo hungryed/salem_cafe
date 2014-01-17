@@ -8,11 +8,6 @@
         <div class="small-4 small-right columns">
           <h3><%= section.description %></h3>
         </div>
-        <% if user_signed_in? %>
-          <% if current_user.is_admin? %>
-            <%= link_to 'Edit', edit_section_path(section) %>
-          <% end %>
-        <% end %>
       <% end %>
     </div>
   <% end %>
