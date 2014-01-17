@@ -1,11 +1,19 @@
-<% @sections.each do |section| %>
-<div>
-  <%= link_to section.name, section_path(section), id: "section_#{section.id}" %>
-  <%= section.description %>
-  <% if user_signed_in? %>
-    <% if current_user.is_admin? %>
-      <%= link_to 'Edit', edit_section_path(section) %>
-    <% end %>
+<div class="small-12 medium-9 columns">
+  <% @sections.each do |section| %>
+    <div class="order">
+      <%= link_to section_path(section), id: "section_#{section.id}" do %>
+        <div class="small-8 small-left columns">
+          <h1><%= section.name %></h1>
+        </div>
+        <div class="small-4 small-right columns">
+          <h3><%= section.description %></h3>
+        </div>
+        <% if user_signed_in? %>
+          <% if current_user.is_admin? %>
+            <%= link_to 'Edit', edit_section_path(section) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
 </div>
-<% end %>
