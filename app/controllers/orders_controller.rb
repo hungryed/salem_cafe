@@ -58,7 +58,6 @@ class OrdersController < ApplicationController
           format.html { redirect_to section_orders_path(@section) }
           format.json { render json: @order }
         else
-          binding.pry
           format.html { redirect_to section_orders_path(@section), notice: 'There was an error.' }
           format.json { render json: @order.errors, status: :unpocessable_entity }
         end
