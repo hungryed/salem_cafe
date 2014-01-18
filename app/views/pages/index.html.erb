@@ -6,3 +6,36 @@
 </div>
 
 <a href="#" data-reveal-id="myModal">Click Me For A Modal</a>
+
+<ul class="example-orbit small-12 small-centered columns" data-orbit>
+  <li>
+    <%= image_tag "http://www.weddingplz.com/blog/wp-content/uploads/2013/10/weighloss-workout-home.jpg", class: "full-image" %>
+  </li>
+  <li>
+    <%= image_tag "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTshgsT5K5Z9eAXRgtfMGaz-gojzV3xKPjd0gYte9jK8bVH656H", class: "full-image" %>
+  </li>
+  <li>
+    <%= image_tag "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT_w01Lr40hwGjxutzYB9GOAD7YP2J_h5aWTUNjZLiTNYwZqgiqxg", class: "full-image" %>
+  </li>
+</ul>
+<% if @food_items.any? %>
+  <div class="large-3 small-6 columns">
+    <%= image_tag @food_item_1.picture_url.to_s if !@food_item_1.nil? %>
+    <h6 class="panel"><%= @food_item_1.description if !@food_item_1.nil?%></h6>
+  </div>
+
+  <div class="large-3 small-6 columns">
+    <%= image_tag @food_item_2.picture_url.to_s if !@food_item_2.nil? %>
+    <h6 class="panel"><%= @food_item_2.description if !@food_item_2.nil? %></h6>
+  </div>
+
+  <div class="large-3 small-6 columns">
+    <%= image_tag @food_item_3.picture_url.to_s if !@food_item_3.nil? %>
+    <h6 class="panel"><%= @food_item_3.description if !@food_item_3.nil? %></h6>
+  </div>
+
+  <div class="large-3 small-6 columns">
+    <%= image_tag @food_item_4.picture_url.to_s if !@food_item_4.nil? %>
+    <h6 class="panel"><%= @food_item_4.description if !@food_item_4.nil? %></h6>
+  </div>
+<% end %>

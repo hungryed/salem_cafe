@@ -18,6 +18,26 @@
   @include panel();
 }
 
+.full-image {
+  margin-top: 2px;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  max-width: 12em;
+  max-height: 20em;
+}
+
+.front-page-food-image{
+  max-height: 4em;
+  max-width: 3em;
+  width: 100%;
+  height: 100%;
+}
+
+.center-text{
+  text-align: center;
+}
+
 .order-progress{
   opacity: 0.5;
 }
@@ -31,6 +51,23 @@
   }
 }
 
+.custom-small-right{
+  float: right;
+  text-align: right;
+  width: 50%;
+}
+
+.custom-date-select-text{
+  font-size: 2.5em;
+  text-align: center;
+}
+
+.custom-date-select{
+  select{
+    display: inline-block;
+    width: 32%;
+  }
+}
 
 .custom-light-background{
   background-color: #F2D99C;

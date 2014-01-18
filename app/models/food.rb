@@ -14,4 +14,12 @@ class Food < ActiveRecord::Base
   def section_id
     food_category.section.id
   end
+
+  def self.picture_list
+    @food_pictures = Food.all.map do |food|
+      food if food.picture_url.present?
+    end
+    @food_pictures.delete(nil)
+    @food_pictures
+  end
 end

@@ -1,6 +1,6 @@
 <% if current_user.is_employee? %>
   <% content_for :head do %>
-    <META HTTP-EQUIV="refresh" CONTENT="15">
+    <META HTTP-EQUIV="refresh" CONTENT="45">
   <% end %>
   <h3><%= @current_section.name %></h3>
   <% @orders.each do |order| %>
