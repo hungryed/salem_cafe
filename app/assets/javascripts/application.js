@@ -13,7 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require pickadate/picker
+//= require pickadate/picker.date
 //= require_tree .
+
+$('.datepickering').pickadate()
+
 
 $(function(){
   $(document).foundation();
@@ -57,4 +62,3 @@ $(function(){
     });
   });
 });
-//change color of panel when order is in progress

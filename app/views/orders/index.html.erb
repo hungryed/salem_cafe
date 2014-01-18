@@ -13,8 +13,7 @@
     <% end %>
       <div id="myModal<%= order.id %>" class="reveal-modal" data-reveal>
         <h1><%= order.food.name %></h1>
-        <h3><%= order.user.first_name %>
-        <%= order.user.last_name %></h3><br>
+        <h3><%= order.user.full_name %></h3><br>
         <h4><%= link_to order.clean_arrival_time, section_order_path(@current_section, order) %></h4>
         <a class="close-reveal-modal">&#215;</a>
       </div>
@@ -30,7 +29,7 @@
               <div class="small-12 small-left columns">
             <% end %>
               <h4><%= order.food.name %></h4>
-              <p><%= [order.user.first_name, order.user.last_name].join(' ') %></p>
+              <p><%= order.user.full_name %></p>
               <p><%= order.clean_arrival_time %></p>
             </div>
             <div class="small-4 small-centered medium-4 medium-centered columns">

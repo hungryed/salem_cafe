@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
   def is_admin?
     role == 'admin'
   end
+
+  def full_name
+    [first_name, last_name].join(' ')
+  end
 end

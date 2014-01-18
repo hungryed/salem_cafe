@@ -19,7 +19,6 @@ feature 'admin sees all orders for day' do
       visit root_path
       order
       click_on "see_order_totals"
-      click_on "Today's Orders"
       expect(page).to have_content order.food.name
       expect(page).to have_content order.clean_arrival_time
       expect(page).to have_content order.section.name
@@ -30,7 +29,6 @@ feature 'admin sees all orders for day' do
       visit root_path
       order
       click_on "see_order_totals"
-      click_on "Today's Orders"
       expect(page).to have_content order.food.name
       expect(page).to have_content order.clean_arrival_time
       expect(page).to have_content order.section.name
@@ -46,23 +44,15 @@ feature 'admin sees all orders for day' do
       visit root_path
       order
       click_on "see_order_totals"
-      select '2014', from: "order_date_params_start_date_1i"
-      select 'January', from: "order_date_params_start_date_2i"
-      select '2', from: "order_date_params_start_date_3i"
-      select '2014', from: "order_date_params_end_date_1i"
-      select 'January', from: "order_date_params_end_date_2i"
-      select '10', from: "order_date_params_end_date_3i"
-      click_on "See Orders in Date Range"
+      fill_in "start_date", with: "2 January, 2014"
+      fill_in "end_date", with: "10 January, 2014"
+      click_on "Find Orders in Range"
       expect(page).to have_content order.food.name
       expect(page).to have_content order.clean_arrival_time
       expect(page).to have_content order.section.name
-      select '2014', from: "order_date_params_start_date_1i"
-      select 'January', from: "order_date_params_start_date_2i"
-      select '2', from: "order_date_params_start_date_3i"
-      select '2014', from: "order_date_params_end_date_1i"
-      select 'January', from: "order_date_params_end_date_2i"
-      select '3', from: "order_date_params_end_date_3i"
-      click_on "See Orders in Date Range"
+      fill_in "start_date", with: "2 January, 2014"
+      fill_in "end_date", with: "3 January, 2014"
+      click_on "Find Orders in Range"
       expect(page).to_not have_content order.food.name
       expect(page).to_not have_content order.clean_arrival_time
       expect(page).to_not have_content order.section.name

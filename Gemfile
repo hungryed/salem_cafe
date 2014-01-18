@@ -39,6 +39,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
 gem 'will_paginate'
+gem 'pickadate-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -17,4 +17,9 @@ describe User do
   it { should_not have_valid(:email).when('user@example',
     'another@com', *blanks, 'smith.com', 'fourty') }
 
+  it "builds a users full name" do
+    user = FactoryGirl.create(:user, first_name: 'Mike',
+      last_name: 'Smith')
+    expect(user.full_name).to eql('Mike Smith')
+  end
 end

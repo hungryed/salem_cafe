@@ -1,4 +1,12 @@
-<%= @order.food.name %>
-<%= @order.user.first_name %>
-<%= @order.user.last_name %>
-<%= @order.clean_arrival_time %>
+<table class="custom-light-background">
+  <tr>
+    <th>Food Item</th>
+    <th>Customer</th>
+    <th>Arrival Time</th>
+  </tr>
+  <tr>
+    <td><%= @order.food.name %></td>
+    <td><%= @order.user.full_name %></td>
+    <td><%= @order.clean_arrival_time %></td>
+  </tr>
+</table>

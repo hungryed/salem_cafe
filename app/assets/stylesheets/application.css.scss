@@ -10,6 +10,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require pickadate/default
+ *= require pickadate/default.date
  */
 
 @import 'foundation_and_overrides';
@@ -62,10 +64,16 @@
   text-align: center;
 }
 
+.custom-date-select-button{
+  text-align: center;
+  font-size: 1em;
+  width: 100%;
+}
+
 .custom-date-select{
   select{
     display: inline-block;
-    width: 32%;
+    width: 30%;
   }
 }
 
