@@ -29,4 +29,6 @@ describe Food do
   it { should have_valid(:description).when('it has chicken', 'green') }
   it { should have_valid(:description).when(*blanks) }
 
+  it { should respond_to(:picture_url) }
+
 end
