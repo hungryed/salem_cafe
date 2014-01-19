@@ -18,11 +18,15 @@
 
 .order {
   @include panel();
+  opacity: 1;
+  h1, h2, h3, h4, h5, h6, p {
+    font-weight: 900;
+  }
 }
 
 .full-image {
-  margin-top: 2px;
-  margin: auto;
+  min-width: 100%;
+  min-height: 20em;
   width: 100%;
   height: 100%;
   max-width: 12em;
@@ -53,6 +57,11 @@
   }
 }
 
+.link-text-right{
+  text-align: right;
+  float: right;
+}
+
 .custom-small-right{
   float: right;
   text-align: right;
@@ -62,6 +71,39 @@
 .custom-date-select-text{
   font-size: 2.5em;
   text-align: center;
+}
+
+
+.front-page-body {
+  background-image: url("http://hdwallpapercollection.com/wp-content/uploads/2013/02/yummy-sea-food-wallpaper.jpg");
+  background-repeat:no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+html, body {
+  min-height: 100%;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+.custom-front-background-color{
+  opacity: 0.9;
+  background-color: #E5B96F;
+  ul {
+    list-style: none;
+  }
+  .button {
+    width: 100%;
+  }
 }
 
 .custom-date-select-button{
@@ -80,4 +122,20 @@
 .custom-light-background{
   background-color: #F2D99C;
   width: 100%;
+  th {
+    font-size: 28px;
+  }
+}
+
+.padded-button {
+  @include button();
+  margin-top: 20px;
+  width: 100%;
+}
+
+@media only screen and (min-width: 64.063em) {
+  .custom-margin{
+    margin-left: 25px;
+    margin-right: 15px;
+  }
 }

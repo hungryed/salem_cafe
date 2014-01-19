@@ -12,7 +12,7 @@
     <%= yield :head %>
   </head>
 
-  <body>
+  <body class="front-page-body">
     <div class="contain-to-grid">
       <nav class='top-bar hide-for-small' data-topbar>
         <ul class="title-area">
@@ -25,21 +25,7 @@
             <li><%= link_to 'Contact Us', new_contact_path, id: "contact_us" %></li>
           </ul>
           <ul class="right">
-            <% if user_signed_in? %>
-              <% if current_user.is_admin? %>
-                <li><%= link_to 'Add Section', new_section_path, id: "add_section" %></li>
-                <li><%= link_to "See Order Totals", order_totals_path, id: "see_order_totals" %></li>
-              <% end %>
-              <% if current_user.is_employee? %>
-
-              <% else %>
-                <li><%= link_to 'Order Food', new_user_order_path(current_user), id: "order_food" %></li>
-                <li><%= link_to 'My Orders', user_orders_path(current_user), id: "my_orders" %></li>
-              <% end %>
-            <% else %>
-              <li><%= link_to 'Order Food', new_user_session_path, id: "order_food" %></li>
-            <% end %>
-            <li><%= link_to 'View Sections', sections_path, id: "view_sections" %></li>
+            <li><%= link_to 'View Sections', sections_path %></li>
             <% if user_signed_in? %>
               <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, id: "sign_out" %></li>
             <% else %>
@@ -92,20 +78,8 @@
       </nav>
     </div>
     <div class="custom-background-color row">
-      <div class="banner">
-        <p></p>
-      </div>
 
       <div class='row'>
-        <% if flash.any? %>
-          <div data class="alert-box alert small-11 small-centered columns center-text">
-            <% flash.each do |name, msg| %>
-              <%= msg %>
-            <% end %>
-            <a href="#" class="close">&times;</a>
-          </div>
-        <% end %>
-
         <div class="custom-margin">
           <%= yield %>
         </div>

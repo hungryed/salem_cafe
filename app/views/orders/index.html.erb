@@ -2,7 +2,9 @@
   <% content_for :head do %>
     <META HTTP-EQUIV="refresh" CONTENT="45">
   <% end %>
-  <h3><%= @current_section.name %></h3>
+  <div class="center-text">
+    <h1><%= @current_section.name %></h1>
+  </div>
   <% @orders.each do |order| %>
     <% if order.status == 'in progress' %>
       <div class="order order-progress" section-order-id="<%= order.id %>">
@@ -13,7 +15,7 @@
     <% end %>
       <div id="myModal<%= order.id %>" class="reveal-modal" data-reveal>
         <h1><%= order.food.name %></h1>
-        <h3><%= order.user.full_name %></h3><br>
+        <h2><%= order.user.full_name %></h2><br>
         <h4><%= link_to order.clean_arrival_time, section_order_path(@current_section, order) %></h4>
         <a class="close-reveal-modal">&#215;</a>
       </div>
@@ -24,15 +26,15 @@
           <%= link_to '#',
             data: { :"reveal-id" => "myModal#{order.id}"} do %>
             <% if order.food.picture_url %>
-              <div class="small-3 small-left medium-4 medium-left columns">
+              <div class="small-6 small-left medium-4 medium-left columns">
             <% else %>
               <div class="small-12 small-left columns">
             <% end %>
-              <h4><%= order.food.name %></h4>
-              <p><%= order.user.full_name %></p>
-              <p><%= order.clean_arrival_time %></p>
+              <h3><%= order.food.name %></h3>
+              <h4><%= order.user.full_name %></h4>
+              <h4><%= order.clean_arrival_time %></h4>
             </div>
-            <div class="small-4 small-centered medium-4 medium-centered columns">
+            <div class="small-6 small-right medium-4 medium-centered columns">
               <%= image_tag order.food.picture_url(:thumb).to_s %>
             </div>
           <% end %>

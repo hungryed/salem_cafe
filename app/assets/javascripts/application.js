@@ -19,7 +19,6 @@
 
 $('.datepickering').pickadate()
 
-
 $(function(){
   $(document).foundation();
 

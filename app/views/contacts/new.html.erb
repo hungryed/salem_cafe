@@ -1,8 +1,10 @@
-<%= simple_form_for @contact do |f| %>
-  <%= f.input :email %>
-  <%= f.input :first_name, label: 'First Name' %>
-  <%= f.input :last_name, label: 'Last Name' %>
-  <%= f.input :subject %>
-  <%= f.input :description %>
-  <%= f.submit 'Submit Contact' %>
-<% end %>
+<div class="small-12 small-centered medium-6 columns">
+  <%= simple_form_for @contact do |f| %>
+    <%= f.input :email %>
+    <%= f.input :first_name, label: 'First Name' %>
+    <%= f.input :last_name, label: 'Last Name' %>
+    <%= f.input :subject %>
+    <%= f.input :description %>
+    <%= f.submit 'Submit Contact' %>
+  <% end %>
+</div>
