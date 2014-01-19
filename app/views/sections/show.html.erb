@@ -1,20 +1,29 @@
-<div class="small-8 small-centered">
-  <h1><%= @section.name %></h1>
-  <h3><%= @section.description %></h3>
-  <% if user_signed_in? %>
-    <% if current_user.is_employee? %>
-      <%= link_to 'Orders', section_orders_path(@section) %>
-      <%= link_to 'Add Food', new_section_food_path(@section) %>
-      <%= link_to 'Food Categories', section_food_categories_path(@section) %>
-      <% if current_user.is_admin? %>
-        <%= link_to 'Edit', edit_section_path(@section) %>
-      <% end %>
+<div class="small-12 small-centered">
+  <h1 class="center-text"><%= @section.name %></h1>
+  <h3 class="center-text"><%= @section.description %></h3>
+</div>
+
+<% if user_signed_in? %>
+  <% if current_user.is_employee? %>
+    <div class="small-12 medium-4 small-centered medium-left columns">
+      <%= link_to 'Orders', section_orders_path(@section), class: "padded-button" %>
+    </div>
+    <div class="small-12 medium-4 small-centered medium-centered columns">
+      <%= link_to 'Add Food', new_section_food_path(@section), class: "padded-button" %>
+    </div>
+    <div class="small-12 medium-4 small-centered medium-right columns">
+      <%= link_to 'Food Categories', section_food_categories_path(@section), class: "padded-button" %>
+    </div>
+    <% if current_user.is_admin? %>
+      <div class="small-12 medium-4 small-centered columns">
+        <%= link_to 'Edit', edit_section_path(@section), class: "padded-button" %>
+      </div>
     <% end %>
   <% end %>
-</div>
+<% end %>
 <div class="small-12 small-centered columns">
-  <h2>Food</h2>
-  <table>
+  <h2 class="center-text">Food</h2>
+  <table class="custom-light-background">
     <th>Food Item</th>
     <th>Description</th>
     <% @section.foods.each do |food| %>

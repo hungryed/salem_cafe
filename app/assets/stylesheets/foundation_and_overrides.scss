@@ -50,7 +50,7 @@ $body-bg: #E5B96F;
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: #690011;
+$primary-color: #CC0429;
 $secondary-color: #F2D99C;
 $alert-color: #BF0426;
 $success-color: #33CC33;
@@ -931,14 +931,14 @@ $topbar-bg-color: $primary-color;
 $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-// $topbar-height: 45px;
-// $topbar-margin-bottom: 0;
+$topbar-height: 70px;
+// $topbar-margin-bottom: 20px;
 
 // Control Input height for top bar
 
 // Controlling the styles for the title in the top bar
-// $topbar-title-weight: normal;
-// $topbar-title-font-size: rem-calc(17);
+$topbar-title-weight: bold;
+$topbar-title-font-size: rem-calc(25);
 
 // Style the top bar dropdown elements
 // $topbar-dropdown-bg: #333;
@@ -952,10 +952,10 @@ $topbar-bg: $topbar-bg-color;
 // $topbar-link-color: #fff;
 // $topbar-link-color-hover: #fff;
 // $topbar-link-color-active: #fff;
-// $topbar-link-weight: normal;
-// $topbar-link-font-size: rem-calc(13);
+$topbar-link-weight: bold;
+$topbar-link-font-size: rem-calc(25);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
-$topbar-link-bg-hover: #D90404  ;
+$topbar-link-bg-hover: #D90404;
 // $topbar-link-bg-active: $primary-color;
 // $topbar-link-bg-active-hover: darken($primary-color, 5%);
 // $topbar-link-font-family: $body-font-family;
@@ -970,7 +970,7 @@ $topbar-link-bg-hover: #D90404  ;
 // Top menu icon styles
 // $topbar-menu-link-transform: uppercase;
 // $topbar-menu-link-font-size: rem-calc(13);
-// $topbar-menu-link-weight: bold;
+$topbar-menu-link-weight: bold;
 // $topbar-menu-link-color: #fff;
 // $topbar-menu-icon-color: #fff;
 // $topbar-menu-link-color-toggled: #888;
@@ -984,7 +984,7 @@ $topbar-link-bg-hover: #D90404  ;
 
 // Divider Styles
 // $topbar-divider-border-bottom: solid 1px lighten($topbar-bg-color, 10%);
-// $topbar-divider-border-top: solid 1px darken($topbar-bg-color, 10%);
+// $topbar-divider-border-top: solid 10px darken($topbar-bg-color, 10%);
 
 // Sticky Class
 // $topbar-sticky-class: ".sticky";

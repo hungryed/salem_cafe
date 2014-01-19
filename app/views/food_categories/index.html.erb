@@ -1,6 +1,20 @@
-<% @food_categories.each do |category| %>
-  <%= category.name %>
-  <%= link_to 'Edit', edit_section_food_category_path(@section, category), id: "edit_food_category_#{category.id}" %>
-  <br>
-<% end %>
-<%= link_to 'Add New Category', new_section_food_category_path(@section) %>
+<div class="small-12 medium-6 small-centered columns">
+  <% if @food_categories.any? %>
+    <table class="custom-light-background">
+      <tr>
+        <th>Category Name</th>
+        <th>Description</th>
+      </tr>
+      <% @food_categories.each do |category| %>
+        <tr>
+          <td><%= category.name %></td>
+          <td><%= category.description %></td>
+          <td><%= link_to 'Edit', edit_section_food_category_path(@section, category), id: "edit_food_category_#{category.id}" %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>
+<div class="small-12 medium-6 small-centered columns">
+  <%= link_to 'Add New Category', new_section_food_category_path(@section), class: "padded-button" %>
+</div>

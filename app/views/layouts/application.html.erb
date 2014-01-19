@@ -12,9 +12,9 @@
     <%= yield :head %>
   </head>
 
-  <body>
+  <body class="front-page-body">
     <div class="contain-to-grid">
-      <nav class='top-bar hide-for-small' data-topbar>
+      <nav class='top-bar show-for-large-up' data-topbar>
         <ul class="title-area">
           <li class="name">
             <h1><%= link_to 'Salem Cafe', root_path %></h1>
@@ -50,10 +50,10 @@
         </section>
       </nav>
 
-      <nav class="top-bar show-for-small" data-topbar>
+      <nav class="top-bar show-for-small-up hide-for-large-up" data-topbar>
         <ul class="title-area">
           <li class="name">
-            <h1><a href="#">Salem Cafe</a></h1>
+            <h1><%= link_to 'Salem Cafe', root_path %></h1>
           </li>
           <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
         </ul>

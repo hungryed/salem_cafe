@@ -1,11 +1,11 @@
   <%= form_tag(order_totals_path, method: :get) do %>
-    <div class="small-6 small-left columns">
+    <div class="small-6 small-centered columns">
       <%= label_tag(:start_date, "Start Date", class: "custom-date-select-text") %>
-      <%= text_field_tag(:start_date, nil, class: "datepickering") %>
+      <%= text_field_tag(:start_date, "Starting Date", class: "datepickering") %>
     </div>
-    <div class="small-6 custom-small-right columns">
+    <div class="small-6 small-centered columns">
       <%= label_tag(:end_date, "End Date", class: "custom-date-select-text") %>
-      <%= text_field_tag(:end_date, nil, class: "datepickering") %>
+      <%= text_field_tag(:end_date, "Ending Date", class: "datepickering") %>
     </div>
     <div class="small-12 small-centered medium-6 columns">
       <%= submit_tag "Find Orders in Range", class: "button custom-date-select-button" %>

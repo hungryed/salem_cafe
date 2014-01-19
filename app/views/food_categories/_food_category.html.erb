@@ -1,5 +1,7 @@
-<%= simple_form_for [@section, @food_category] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.button :submit %>
-<% end %>
+<div class="small-12 medium-6 small-centered columns">
+  <%= simple_form_for [@section, @food_category] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.button :submit %>
+  <% end %>
+</div>

@@ -96,7 +96,6 @@ body {
   min-height: 100%;
 }
 .custom-front-background-color{
-  opacity: 0.9;
   background-color: #E5B96F;
   ul {
     list-style: none;
@@ -119,6 +118,11 @@ body {
   }
 }
 
+.custom-background-color {
+  background-color: #fff;
+  height: 100%;
+}
+
 .custom-light-background{
   background-color: #F2D99C;
   width: 100%;
@@ -133,9 +137,56 @@ body {
   width: 100%;
 }
 
+.padded-front-page-button {
+  @include button();
+  margin-top: 20px;
+  width: 100%;
+  height: rem-calc(90);
+  font-weight: bolder;
+  font-size: 1.5em;
+  background-color: #CE2325;
+  text-align: center;
+  vertical-align: middle;
+  line-height: rem-calc(45);
+}
+
 @media only screen and (min-width: 64.063em) {
   .custom-margin{
     margin-left: 25px;
     margin-right: 15px;
   }
+
 }
+
+@media only screen and (max-width: 64em) {
+  .custom-background-color {
+    background-image: url(image_path('rice_paper.png'));
+    height: 100%;
+    opacity: 0.9;
+  }
+}
+
+// TABLET
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+  .front-page-body {
+    background-image: url("http://hdwallpapercollection.com/wp-content/uploads/2013/02/yummy-sea-food-wallpaper.jpg");
+    background-size: 100%;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    min-height: 760px;
+  }
+}
+
+// Phone
+@media only screen and (max-width: 40em) {
+  .front-page-body {
+    background-image: none;
+    background-size: 100%;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    min-height: 760px;
+  }
+}
+
