@@ -131,6 +131,10 @@ body {
   }
 }
 
+.underline-text {
+  text-decoration: underline;
+}
+
 .padded-button {
   @include button();
   margin-top: 20px;

@@ -1,7 +1,17 @@
-<%= @food.section.name %>
-<%= @food.name %>
-<%= @food.description %>
-<%= image_tag @food.picture_url(:thumb).to_s %>
-<% if current_user.is_employee? %>
-  <%= link_to 'Edit', edit_section_food_path(@section, @food) %>
-<% end %>
+<div class="small-12 medium-6 small-centered columns center-text underline-text">
+  <h1><%= @food.section.name %></h1>
+</div>
+<div class="small-12 medium-6 small-centered columns center-text">
+  <h1><%= @food.name %></h1>
+</div>
+<div class="small-12 medium-6 small-centered columns center-text">
+  <%= image_tag @food.picture_url(:thumb).to_s %>
+</div>
+<div class="small-12 medium-6 small-centered columns center-text">
+  <h3><%= @food.description %></h3>
+</div>
+<div class="small-12 medium-6 small-centered columns center-text">
+  <% if current_user.is_employee? %>
+    <%= link_to 'Edit', edit_section_food_path(@section, @food), class: "button" %>
+  <% end %>
+</div>

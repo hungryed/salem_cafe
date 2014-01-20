@@ -6,8 +6,8 @@ class Section < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :start_time
   validates_presence_of :end_time
-  validates_time :start_time,
-    before: :end_time
+  validates_time :end_time,
+    after: :start_time
   validates_time :start_time,
     between: ['7:00am', '2:00pm']
   validates_time :end_time,
