@@ -14,8 +14,9 @@ class Section < ActiveRecord::Base
     between: ['7:00am', '2:00pm']
 
   def self.todays_orders(section_id, current_page=1)
+    completed = 'completed'
     Order.where("section_id = #{section_id} AND status != ? AND arrival_time >= ?",
-        'completed', Date.today.to_datetime).order(:arrival_time)
+        completed, Date.today.to_datetime).order(:arrival_time)
         .paginate(per_page: 10, page: current_page)
   end
 
