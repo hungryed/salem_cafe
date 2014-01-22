@@ -7,10 +7,10 @@
   </div>
   <% @orders.each do |order| %>
     <% if order.status == 'in progress' %>
-      <div class="order order-progress" section-order-id="<%= order.id %>">
+      <div class="order order-progress clearfix" section-order-id="<%= order.id %>">
       <% progress_toggle = 'not started' %>
     <% else %>
-      <div class="order" section-order-id="<%= order.id %>">
+      <div class="order clearfix" section-order-id="<%= order.id %>">
       <% progress_toggle = 'in progress' %>
     <% end %>
       <div id="myModal<%= order.id %>" class="reveal-modal" data-reveal>

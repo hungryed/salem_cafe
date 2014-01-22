@@ -11,6 +11,16 @@ class OrderTotal
     .paginate(per_page: 10, page: current_page)
   end
 
+  def divide_by_section
+    @section_orders = Order.where("arrival_time >= ? AND arrival_time <= ?",
+     @start_date, @end_date).group("section").count
+    @section_order_totals = {}
+    @section_orders.each do |section, order_count|
+      @section_order_totals[section.name] = order_count
+    end
+    @section_order_totals
+  end
+
   class << self
     def todays_orders
       orders = OrderTotal.new(Date.today, DateTime.tomorrow)

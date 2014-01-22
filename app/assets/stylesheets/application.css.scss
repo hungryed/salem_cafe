@@ -22,22 +22,16 @@
   h1, h2, h3, h4, h5, h6, p {
     font-weight: 900;
   }
+  max-height: 400px;
+  transition: all 0.5s ease;
+  overflow: hidden;
 }
 
-.full-image {
-  min-width: 100%;
-  min-height: 20em;
-  width: 100%;
-  height: 100%;
-  max-width: 12em;
-  max-height: 20em;
-}
-
-.front-page-food-image{
-  max-height: 4em;
-  max-width: 3em;
-  width: 100%;
-  height: 100%;
+.order-completed {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
 }
 
 .center-text{
@@ -57,11 +51,6 @@
   }
 }
 
-.link-text-right{
-  text-align: right;
-  float: right;
-}
-
 .custom-small-right{
   float: right;
   text-align: right;
@@ -73,28 +62,29 @@
   text-align: center;
 }
 
-
 .front-page-body {
-  background-image: url("http://hdwallpapercollection.com/wp-content/uploads/2013/02/yummy-sea-food-wallpaper.jpg");
+  background-image: url("http://lapazdentistry.files.wordpress.com/2013/03/shutterstock_12052669.jpg");
   background-repeat:no-repeat;
   background-size: 100%;
   background-attachment: fixed;
   width: 100%;
   height: 100%;
+  min-height: 760px;
+  min-width: 100%;
 }
 
-html, body {
-  min-height: 100%;
+
+.non-front-page-body {
+  background-image: url("http://lapazdentistry.files.wordpress.com/2013/03/shutterstock_12052669.jpg");
+  background-repeat:no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+  width: 100%;
   height: 100%;
+  min-height: 760px;
+  min-width: 100%;
 }
 
-html {
-  height: 100%;
-}
-
-body {
-  min-height: 100%;
-}
 .custom-front-background-color{
   background-color: #E5B96F;
   ul {
@@ -104,6 +94,26 @@ body {
   }
   .button {
     width: 100%;
+  }
+}
+
+.tabs {
+  text-align: center;
+  dd.active {
+    a {
+      text-align: center;
+      background-color: #850015;
+    }
+  }
+}
+
+.tabs-content {
+  form {
+    padding-left: 40px;
+    width: 60%;
+    select{
+      width: 100%;
+    }
   }
 }
 
@@ -121,7 +131,7 @@ body {
 }
 
 .custom-background-color {
-  background-color: #fff;
+  // background-color: #fff;
   height: 100%;
 }
 
@@ -156,6 +166,15 @@ body {
   line-height: rem-calc(50);
 }
 
+.custom-front-page-margin {
+  min-height: 760px;
+}
+
+.custom-margin {
+  background-color: white;
+  min-height: 760px;
+}
+
 @media only screen and (min-width: 64.063em) {
   .custom-margin{
     margin-left: 25px;
@@ -174,13 +193,13 @@ body {
 
 // TABLET
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {
-  .front-page-body {
-    background-image: url("http://hdwallpapercollection.com/wp-content/uploads/2013/02/yummy-sea-food-wallpaper.jpg");
+  .non-front-page-body {
+    background-image: url("http://lapazdentistry.files.wordpress.com/2013/03/shutterstock_12052669.jpg");
     background-size: 100%;
     background-attachment: fixed;
     width: 100%;
     height: 100%;
-    min-height: 760px;
+    // min-height: 760px;
   }
   .custom-margin{
     margin-left: 0px;
@@ -190,13 +209,23 @@ body {
 
 // Phone
 @media only screen and (max-width: 40em) {
-  .front-page-body {
+  .non-front-page-body {
     background-image: none;
     background-size: 100%;
     background-attachment: fixed;
     width: 100%;
     height: 100%;
-    min-height: 760px;
+    // min-height: 760px;
+  }
+  .tabs-content {
+    form {
+      padding-left: 0px;
+      width: 100%;
+      select{
+        display: middle;
+        width: 100%;
+      }
+    }
   }
 }
 

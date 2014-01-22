@@ -16,10 +16,6 @@ class Food < ActiveRecord::Base
   end
 
   def self.picture_list
-    @food_pictures = Food.all.map do |food|
-      food if food.picture_url.present?
-    end
-    @food_pictures.delete(nil)
-    @food_pictures
+    Food.where("picture IS NOT NULL")
   end
 end

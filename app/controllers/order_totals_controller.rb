@@ -8,9 +8,11 @@ class OrderTotalsController < ApplicationController
       @end_date = (end_date.to_date + 12.hours).to_s
       orders = OrderTotal.new(@start_date, @end_date)
       @orders = orders.find_orders_in_range(params[:page])
+      @section_orders = orders.divide_by_section
     else
-      @orders = OrderTotal.todays_orders
-      @orders = @orders.find_orders_in_range(params[:page])
+      orders = OrderTotal.todays_orders
+      @orders = orders.find_orders_in_range(params[:page])
+      @section_orders = orders.divide_by_section
     end
   end
 end

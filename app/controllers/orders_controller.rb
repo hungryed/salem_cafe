@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :authorize_user_is_not_employee, except: [:index, :show, :update]
+  before_filter :current_user_is_page_user, only: [:new, :destroy, :edit]
 
   def index
     if current_user.is_employee?

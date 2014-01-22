@@ -1,17 +1,21 @@
-<% if @order.errors.any? %>
-  <div data-alert class="alert-box warning round">
-    <% @order.errors.each do |name, error| %>
-      <%= error %>
+<div class="small-12 small-centered columns center-text">
+  <% if @order.errors.any? %>
+    <div data-alert class="alert-box warning round">
+      <% @order.errors.each do |name, error| %>
+        <%= error %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <h3>Step 1: Choose a Section</h3>
+  <dl class="tabs vertical" data-tab>
+    <% @sections.each do |section| %>
+      <dd><%= link_to section.name, "#section-#{section.id}" %></dd>
+    <% end %>
+  </dl>
+  <div class="tabs-content">
+    <% @sections.each do |section| %>
+        <%= render 'order_form', section: section %>
     <% end %>
   </div>
-<% end %>
-<dl class="tabs" data-tab>
-  <% @sections.each do |section| %>
-    <dd><%= link_to section.name, "#section-#{section.id}" %></dd>
-  <% end %>
-</dl>
-<div class="tabs-content">
-  <% @sections.each do |section| %>
-    <%= render 'order_form', section: section %>
-  <% end %>
 </div>

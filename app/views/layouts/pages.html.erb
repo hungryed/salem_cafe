@@ -24,7 +24,6 @@
             <li><%= link_to 'Contact Us', new_contact_path, id: "contact_us" %></li>
           </ul>
           <ul class="right">
-            <li><%= link_to 'View Sections', sections_path %></li>
             <% if user_signed_in? %>
               <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, id: "sign_out" %></li>
             <% else %>
@@ -79,7 +78,7 @@
     <div class="row">
 
       <div class='row'>
-        <div class="custom-margin">
+        <div class="custom-front-page-margin">
           <%= yield %>
         </div>
       </div>

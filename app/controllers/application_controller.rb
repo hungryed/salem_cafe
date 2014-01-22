@@ -28,6 +28,11 @@ class ApplicationController < ActionController::Base
   def deny_access
     redirect_to root_path, notice: 'Naw Son'
   end
+
+  def current_user_is_page_user
+    deny_access if current_user.id.to_s != params[:user_id]
+  end
+
   protected
 
   def configure_permitted_parameters

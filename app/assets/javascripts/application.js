@@ -17,7 +17,7 @@
 //= require pickadate/picker.date
 //= require_tree .
 
-$('.datepickering').pickadate()
+$('.datepickering').pickadate();
 
 $(function(){
   $(document).foundation();
@@ -34,7 +34,7 @@ $(function(){
       url: url,
       dataType: "json",
       success: function(order) {
-        $target.closest('.order').fadeOut(500);
+        $target.closest('.order').toggleClass('order-completed');
       },
       failure: function(data) {
         console.log(data);

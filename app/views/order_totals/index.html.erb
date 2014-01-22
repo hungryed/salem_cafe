@@ -19,6 +19,8 @@
   <h1 class="center-text">Today's Orders</h1>
     <%= line_chart Order.where(arrival_time: Date.today..Date.tomorrow).group_by_hour(:arrival_time).count, :library => {:backgroundColor => "#F2D99C"} %>
   <% end %>
+  <h1 class="center-text">By Section</h1>
+  <%= pie_chart @section_orders %>
 </div>
 <div class="small-12 small-left columns">
   <table class="custom-light-background">
