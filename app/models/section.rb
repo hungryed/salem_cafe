@@ -17,7 +17,7 @@ class Section < ActiveRecord::Base
     completed = 'completed'
     Order.where("section_id = #{section_id} AND status != ? AND arrival_time >= ?",
         completed, Date.today.to_datetime).order(:arrival_time)
-        .paginate(per_page: 10, page: current_page)
+        .page(current_page).per(10)
   end
 
   def foods

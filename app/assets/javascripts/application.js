@@ -16,7 +16,7 @@
 //= require pickadate/picker
 //= require pickadate/picker.date
 //= require_tree .
-
+//= require_self
 $('.datepickering').pickadate();
 
 $(function(){

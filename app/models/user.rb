@@ -11,12 +11,12 @@ class User < ActiveRecord::Base
   def todays_uncompleted_orders(current_page=1)
     Order.where("user_id = #{self.id} AND status != ? AND status IS NOT NULL AND arrival_time >= ?",
      'completed', Date.today.to_datetime).order(arrival_time: :desc)
-      .paginate(per_page: 10, page: current_page)
+      .page(current_page).per(10)
   end
 
   def all_orders(current_page=1)
     Order.where("user_id = #{self.id} AND status = ? AND status IS NOT NULL", 'completed')
-    .order(arrival_time: :desc).paginate(per_page: 10, page: current_page)
+    .order(arrival_time: :desc).page(current_page).per(10)
   end
 
   def is_employee?

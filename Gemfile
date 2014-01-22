@@ -39,7 +39,7 @@ gem 'groupdate'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
-gem 'will_paginate'
+gem 'kaminari'
 gem 'pickadate-rails'
 
 group :production do

@@ -131,7 +131,7 @@
 }
 
 .custom-background-color {
-  // background-color: #fff;
+  background-color: #fff;
   height: 100%;
 }
 
@@ -141,6 +141,11 @@
   th {
     font-size: 28px;
   }
+}
+
+.non-front-background {
+  background-color: white;
+  height: 100%;
 }
 
 .underline-text {
@@ -171,14 +176,13 @@
 }
 
 .custom-margin {
-  background-color: white;
   min-height: 760px;
 }
 
 @media only screen and (min-width: 64.063em) {
   .custom-margin{
-    margin-left: 25px;
-    margin-right: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
 }
@@ -187,7 +191,6 @@
   .custom-background-color {
     background-image: url(image_path('rice_paper.png'));
     height: 100%;
-    opacity: 0.9;
   }
 }
 
@@ -225,6 +228,17 @@
         display: middle;
         width: 100%;
       }
+    }
+  }
+  .front-page-body {
+    background-image: none;
+    background-size: 100%;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    img {
+      max-height: 40%;
+      min-width: 100%;
     }
   }
 }

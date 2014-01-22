@@ -8,7 +8,7 @@ class OrderTotal
   def find_orders_in_range(current_page=1)
     Order.where("arrival_time >= ? AND arrival_time <= ?",
      @start_date, @end_date).order(:arrival_time)
-    .paginate(per_page: 10, page: current_page)
+    .page(current_page).per(10)
   end
 
   def divide_by_section
