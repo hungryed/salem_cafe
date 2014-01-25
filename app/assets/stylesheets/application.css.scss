@@ -63,7 +63,7 @@
 }
 
 .front-page-body {
-  background-image: url("http://lapazdentistry.files.wordpress.com/2013/03/shutterstock_12052669.jpg");
+  background-image: url("http://hdwallpapercollection.com/wp-content/uploads/2013/02/yummy-sea-food-wallpaper.jpg");
   background-repeat:no-repeat;
   background-size: 100%;
   background-attachment: fixed;
@@ -75,7 +75,7 @@
 
 
 .non-front-page-body {
-  background-image: url("http://lapazdentistry.files.wordpress.com/2013/03/shutterstock_12052669.jpg");
+  background-image: url("http://hdwallpapercollection.com/wp-content/uploads/2013/02/yummy-sea-food-wallpaper.jpg");
   background-repeat:no-repeat;
   background-size: 100%;
   background-attachment: fixed;
@@ -102,7 +102,7 @@
   dd.active {
     a {
       text-align: center;
-      background-color: #850015;
+      background-color: #4E7F00;
     }
   }
 }
@@ -158,17 +158,22 @@
   width: 100%;
 }
 
+.front-page-container {
+  margin-top: 50px;
+}
+
 .padded-front-page-button {
   @include button();
-  margin-top: 20px;
+  // margin-top: 20px;
   width: 100%;
   height: rem-calc(90);
   font-weight: bolder;
   font-size: 1.5em;
-  background-color: #CE2325;
+  background-color: #AD922D;
   text-align: center;
   vertical-align: middle;
   line-height: rem-calc(50);
+  border:3px solid #fff
 }
 
 .custom-front-page-margin {
@@ -177,6 +182,16 @@
 
 .custom-margin {
   min-height: 760px;
+}
+
+.front-page-description {
+  background-color: #AD922D;
+  color: #fff;
+  opacity: 0.8;
+  z-index: 99;
+  p {
+    font-weight: bold;
+  }
 }
 
 @media only screen and (min-width: 64.063em) {
@@ -197,7 +212,7 @@
 // TABLET
 @media only screen and (min-width: 40.063em) and (max-width: 64em) {
   .non-front-page-body {
-    background-image: url("http://lapazdentistry.files.wordpress.com/2013/03/shutterstock_12052669.jpg");
+    background-image: url("http://hdwallpapercollection.com/wp-content/uploads/2013/02/yummy-sea-food-wallpaper.jpg");
     background-size: 100%;
     background-attachment: fixed;
     width: 100%;

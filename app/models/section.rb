@@ -4,6 +4,7 @@ class Section < ActiveRecord::Base
   has_many :food_categories,
     inverse_of: :section
   validates_presence_of :name
+  validates_uniqueness_of :name
   validates_presence_of :start_time
   validates_presence_of :end_time
   validates_time :end_time,

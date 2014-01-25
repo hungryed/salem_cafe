@@ -50,9 +50,9 @@ $body-bg: #E5B96F;
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: #CC0429;
+$primary-color: #94AD53;
 $secondary-color: #F2D99C;
-$alert-color: #BF0426;
+$alert-color: #AD922D;
 $success-color: #33CC33;
 
 // We use these to make sure border radius matches unless we want it different.
@@ -953,9 +953,9 @@ $topbar-title-font-size: rem-calc(25);
 // $topbar-link-color-hover: #fff;
 // $topbar-link-color-active: #fff;
 $topbar-link-weight: bold;
-$topbar-link-font-size: rem-calc(25);
+$topbar-link-font-size: rem-calc(24);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
-$topbar-link-bg-hover: #D90404;
+$topbar-link-bg-hover: darken($primary-color, 20%);
 // $topbar-link-bg-active: $primary-color;
 // $topbar-link-bg-active-hover: darken($primary-color, 5%);
 // $topbar-link-font-family: $body-font-family;
