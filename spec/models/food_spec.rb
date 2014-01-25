@@ -5,7 +5,15 @@ describe Food do
 
   it { should have_many :orders }
   it { should belong_to :food_category }
+  it "should validate uniqueness of food name scoped to food_category" do
+    food_category = FactoryGirl.create(:food_category)
+    food = FactoryGirl.create(:food, food_category: food_category)
+    food2 = FactoryGirl.build(:food,
+     food_category: food_category,
+     name: food.name)
 
+    expect(food2).to_not be_valid
+  end
   it { should respond_to(:section) }
   it { should_not belong_to(:section) }
   it "should associate a section through food_category" do

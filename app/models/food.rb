@@ -5,6 +5,7 @@ class Food < ActiveRecord::Base
     inverse_of: :foods
   validates_presence_of :name
   validates_presence_of :food_category
+  validates_uniqueness_of :name, scope: :food_category
   mount_uploader :picture, FoodPhotoUploader
 
   def section
