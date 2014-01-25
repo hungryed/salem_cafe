@@ -33,7 +33,7 @@ class SectionsController < ApplicationController
   end
 
   def index
-    @sections = Section.all
+    @sections = Section.all.sort_by { |s| s.name }
   end
 
   protected

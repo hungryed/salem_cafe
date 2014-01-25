@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :authorize_user_is_not_employee, except: [:index, :show, :update]
   before_filter :current_user_is_page_user, only: [:new, :destroy, :edit]
+  before_filter :current_user_is_order_holder, only: :index
 
   def index
     if current_user.is_employee?
@@ -14,7 +15,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @sections = Section.all
+    @sections = Section.all.sort_by {|s| s.name }
     @order = Order.new
   end
 
