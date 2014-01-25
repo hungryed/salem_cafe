@@ -39,6 +39,7 @@ feature 'user places an order' do
       sign_in_as(user)
       click_on "order_food"
       click_on section.name
+      select food.name, from: 'Food'
       within '#order_arrival_time_4i' do
         select '11 AM'
       end

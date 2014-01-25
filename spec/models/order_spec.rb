@@ -29,4 +29,16 @@ describe Order do
     order = FactoryGirl.create(:order)
     expect(order.clean_arrival_time).to eql('01-04 01:55PM')
   end
+
+  it "should only allow for order status to be in 3 formats" do
+    order = FactoryGirl.create(:order)
+    order.status = 'completed'
+    expect(order).to be_valid
+    order.status = 'in progress'
+    expect(order).to be_valid
+    order.status = 'not started'
+    expect(order).to be_valid
+    order.status = 'random string'
+    expect(order).to_not be_valid
+  end
 end
