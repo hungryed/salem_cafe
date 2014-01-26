@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def deny_access
-    redirect_to root_path, notice: 'Naw Son'
+    redirect_to root_path, notice: 'You do not have permission to access that page'
   end
 
   def current_user_is_page_user

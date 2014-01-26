@@ -108,16 +108,16 @@ feature 'worker or admin creates a food category' do
     expect(page).to_not have_content 'Food Categories'
 
     visit section_food_categories_path(section)
-    expect(page).to have_content 'Naw Son'
+    expect(page).to have_content 'You do not have permission to access that page'
   end
 
   scenario "customer can't add or edit category pages" do
     sign_in_as(user)
     food_category = FactoryGirl.create(:food_category, section: section)
     visit new_section_food_category_path(section)
-    expect(page).to have_content 'Naw Son'
+    expect(page).to have_content 'You do not have permission to access that page'
     visit edit_section_food_category_path(section, food_category)
-    expect(page).to have_content 'Naw Son'
+    expect(page).to have_content 'You do not have permission to access that page'
   end
 
   scenario "unauthorized user can't add or edit category pages" do

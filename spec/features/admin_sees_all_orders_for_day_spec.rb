@@ -65,7 +65,7 @@ feature 'admin sees all orders for day' do
       visit root_path
       expect(page).to_not have_content "See Order Totals"
       visit order_totals_path
-      expect(page).to have_content 'Naw Son'
+      expect(page).to have_content 'You do not have permission to access that page'
     end
 
     scenario "user can't see total orders" do
@@ -73,14 +73,14 @@ feature 'admin sees all orders for day' do
       visit root_path
       expect(page).to_not have_content "See Order Totals"
       visit order_totals_path
-      expect(page).to have_content 'Naw Son'
+      expect(page).to have_content 'You do not have permission to access that page'
     end
 
     scenario "unauthenticated users can't see total orders" do
       visit root_path
       expect(page).to_not have_content "See Order Totals"
       visit order_totals_path
-      expect(page).to have_content 'Naw Son'
+      expect(page).to have_content 'You do not have permission to access that page'
     end
   end
 end

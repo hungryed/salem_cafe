@@ -76,7 +76,7 @@ feature 'worker modifies food' do
 
       expect(page).to_not have_content 'Edit'
       visit new_section_food_path(food.food_category.section)
-      expect(page).to have_content 'Naw Son'
+      expect(page).to have_content 'You do not have permission to access that page'
     end
 
     scenario "can visit food description path" do

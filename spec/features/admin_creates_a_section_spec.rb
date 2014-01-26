@@ -43,7 +43,7 @@ feature 'admin creates a section' do
       expect(page).to_not have_content 'Add Section'
       visit new_section_path
 
-      expect(page).to have_content 'Naw Son'
+      expect(page).to have_content 'You do not have permission to access that page'
     end
 
     scenario "normal users can view a section" do
@@ -63,7 +63,7 @@ feature 'admin creates a section' do
       expect(page).to_not have_content 'Add Section'
       visit new_section_path
 
-      expect(page).to have_content 'Naw Son'
+      expect(page).to have_content 'You do not have permission to access that page'
     end
 
     scenario "worker can view a section" do

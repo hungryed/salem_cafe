@@ -30,6 +30,14 @@ describe Order do
     expect(order.clean_arrival_time).to eql('01-04 01:55PM')
   end
 
+  it "should check if an order is not completed" do
+    order = FactoryGirl.create(:order)
+
+    expect(order.completed?).to be_false
+    order.status = 'completed'
+    expect(order.completed?).to be_true
+  end
+
   it "should only allow for order status to be in 3 formats" do
     order = FactoryGirl.create(:order)
     order.status = 'completed'

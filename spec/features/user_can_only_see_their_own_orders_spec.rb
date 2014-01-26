@@ -8,6 +8,6 @@ feature 'user only sees their own orders' do
     sign_in_as(user2)
 
     visit user_orders_path(user)
-    expect(page).to have_content 'Naw Son'
+    expect(page).to have_content 'You do not have permission to access that page'
   end
 end
