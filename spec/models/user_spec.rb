@@ -22,4 +22,16 @@ describe User do
       last_name: 'Smith')
     expect(user.full_name).to eql('Mike Smith')
   end
+
+  it "only allows users to be one of three roles" do
+    user = FactoryGirl.create(:user)
+    user.role = 'customer'
+    expect(user).to be_valid
+    user.role = 'worker'
+    expect(user).to be_valid
+    user.role = 'admin'
+    expect(user).to be_valid
+    user.role = 'taco'
+    expect(user).to_not be_valid
+  end
 end
