@@ -40,7 +40,7 @@ Seeders::Foods.make(breakfast_topping, 'Onions')
 Seeders::Foods.make(breakfast_topping, 'Diced Tomatoes')
 
 # GRILL FOOD
-Seeders::Foods.make(grill_entree, 'Reuban Sandwich')
+Seeders::Foods.make(grill_entree, 'Reuben Sandwich')
 Seeders::Foods.make(grill_entree, 'French Dip Sandwich')
 Seeders::Foods.make(grill_entree, 'Fried Fish')
 Seeders::Foods.make(grill_entree, 'Hot Dog')
