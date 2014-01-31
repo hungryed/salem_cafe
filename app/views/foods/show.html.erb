@@ -11,7 +11,9 @@
   <h3><%= @food.description %></h3>
 </div>
 <div class="small-12 medium-6 small-centered columns center-text">
-  <% if current_user.is_employee? %>
-    <%= link_to 'Edit', edit_section_food_path(@section, @food), class: "button" %>
+  <% if current_user %>
+    <% if current_user.is_employee? %>
+      <%= link_to 'Edit', edit_section_food_path(@section, @food), class: "button" %>
+    <% end %>
   <% end %>
 </div>
