@@ -1,0 +1,40 @@
+<nav class='top-bar show-for-large-up' data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><%= link_to 'Salem Cafe', root_path %></h1>
+    </li>
+  </ul>
+  <section class="top-bar-section">
+    <ul class="left">
+      <li><%= link_to 'Contact Us', new_contact_path, id: "contact_us" %></li>
+    </ul>
+    <ul class="right">
+      <li class="has-dropdown">
+        <a href="#">Options</a>
+        <ul class="dropdown">
+          <% if user_signed_in? %>
+            <% if current_user.is_admin? %>
+              <li><%= link_to 'Add Section', new_section_path, id: "add_section" %></li>
+              <li><%= link_to "See Order Totals", order_totals_path, id: "see_order_totals" %></li>
+            <% end %>
+            <% if current_user.is_employee? %>
+
+            <% else %>
+              <li><%= link_to 'Order Food', new_user_order_path(current_user), id: "order_food" %></li>
+              <li><%= link_to 'My Orders', user_orders_path(current_user), id: "my_orders" %></li>
+            <% end %>
+          <% else %>
+            <li><%= link_to 'Order Food', new_user_session_path, id: "order_food" %></li>
+          <% end %>
+          <li><%= link_to 'View Sections', sections_path, id: "view_sections" %></li>
+        </ul>
+      </li>
+      <% if user_signed_in? %>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, id: "sign_out" %></li>
+      <% else %>
+        <li><%= link_to 'Sign Up', new_user_registration_path, id: "sign_up" %></li>
+        <li><%= link_to 'Sign In', new_user_session_path, id: "sign_in" %></li>
+      <% end %>
+    </ul>
+  </section>
+</nav>

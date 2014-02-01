@@ -23,6 +23,7 @@
           <% else %>
             <li><%= link_to 'Order Food', new_user_order_path(current_user), id: "order_food", class: "padded-front-page-button"  %></li>
             <li><%= link_to 'My Orders', user_orders_path(current_user), id: "my_orders", class: "padded-front-page-button"  %></li>
+            <li><%= link_to 'My Profile', user_path(current_user) %></li>
           <% end %>
         <% else %>
           <li><%= link_to 'Order Food', new_user_session_path, id: "order_food", class: "padded-front-page-button"  %></li>

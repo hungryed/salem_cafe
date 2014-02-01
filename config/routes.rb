@@ -3,7 +3,7 @@ SalemCafe::Application.routes.draw do
   devise_for :users
   resources :order_totals, only: :index
 
-  resources :users, only: :none do
+  resources :users, only: [:edit, :show, :update] do
     resources :orders, except: :show
   end
 
