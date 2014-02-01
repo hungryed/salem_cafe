@@ -29,6 +29,10 @@ class ApplicationController < ActionController::Base
     deny_access if current_user.id.to_s != params[:user_id]
   end
 
+  def current_page_is_user_own_profile
+    deny_access if current_user.id.to_s != params[:id]
+  end
+
   def current_user_is_order_holder
     if !current_user.is_employee?
       deny_access if current_user.id.to_s != params[:user_id]

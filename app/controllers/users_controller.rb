@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :current_page_is_user_own_profile
+
   def show
     @user = User.find(params[:id])
   end

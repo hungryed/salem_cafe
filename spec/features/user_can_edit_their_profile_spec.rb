@@ -29,4 +29,11 @@ feature 'user edits their profile spec' do
     expect_presence_error_for(:user, :last_name)
     expect(page).to have_content 'Emailis invalid'
   end
+
+  scenario 'user can only see their own profile' do
+    user2 = FactoryGirl.create(:user)
+    sign_in_as(user)
+    visit edit_user_path(user2)
+    expect(page).to have_content 'You do not have permission to access that page'
+  end
 end
