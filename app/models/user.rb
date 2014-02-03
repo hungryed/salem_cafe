@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_presence_of :last_name
   validates_inclusion_of :role, in: ['customer', 'worker', 'admin']
+  before_validation :strip_non_numeric_characters
+  validates_format_of :phone_number,
+    with: /\A\d{10}\z/,
+    allow_blank: true,
+    message: 'Phone Number must be 10 digits'
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -30,5 +35,11 @@ class User < ActiveRecord::Base
 
   def full_name
     [first_name, last_name].map(&:capitalize).join(' ')
+  end
+
+  def strip_non_numeric_characters
+    if self.phone_number
+      self.phone_number = self.phone_number.gsub(/[\D+]/, '')
+    end
   end
 end
