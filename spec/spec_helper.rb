@@ -49,4 +49,6 @@ RSpec.configure do |config|
   config.include ErrorHelper
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
+  config.include SmsSpec::Helpers
+  config.include SmsSpec::Matchers
 end

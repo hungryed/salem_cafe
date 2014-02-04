@@ -34,7 +34,14 @@ describe User do
     user.role = 'taco'
     expect(user).to_not be_valid
   end
+
   it { should have_valid(:phone_number).when('4134469666', nil, '(413)-446-9644') }
   it { should_not have_valid(:phone_number).when('41344696666', 'abcd12') }
-
+  it "should check if a user accepts texts" do
+    user = FactoryGirl.create(:user)
+    expect(user.accepts_texts?).to be_true
+    user.receives_texts = false
+    user.save
+    expect(user.accepts_texts?).to be_false
+  end
 end

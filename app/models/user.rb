@@ -42,4 +42,12 @@ class User < ActiveRecord::Base
       self.phone_number = self.phone_number.gsub(/[\D+]/, '')
     end
   end
+
+  def accepts_texts?
+    if phone_number.length == 10 && receives_texts
+      true
+    else
+      false
+    end
+  end
 end

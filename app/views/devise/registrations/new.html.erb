@@ -8,7 +8,9 @@
       <%= f.input :last_name,label: 'Last Name', required: true %>
       <%= f.input :email, required: true %>
       <%= f.input :phone_number, label: 'Phone Number' %>
-      <%= f.input :receives_texts, label: 'Receive Text Notifications', as: :boolean %>
+      <%= f.input :receives_texts,
+       label: 'Receive Text Notifications when order is in progress',
+        as: :boolean %>
       <%= f.input :password, required: true %>
       <%= f.input :password_confirmation,label: 'Password Confirmation', required: true %>
     </div>

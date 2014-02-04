@@ -41,6 +41,7 @@ gem 'rmagick'
 gem 'fog'
 gem 'kaminari'
 gem 'pickadate-rails'
+gem 'twilio-ruby'
 
 group :production do
   gem 'rails_12factor'
@@ -64,6 +65,7 @@ group :development, :test do
   gem 'mailcatcher'
   gem 'selenium-webdriver'
   gem 'orderly'
+  gem 'sms-spec'
 end
 
 group :test do

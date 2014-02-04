@@ -54,9 +54,10 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @section = Section.find(@order.section)
     if current_user.is_employee?
-
+      order_status = params[:order][:status]
       respond_to do |format|
-        if @order.update_attribute(:status, params[:order][:status])
+        if @order.update_attribute(:status, order_status)
+          TextMessager.send_text(@order.user) if order_status == 'in progress'
           format.html { redirect_to section_orders_path(@section) }
           format.json { render json: @order }
         else

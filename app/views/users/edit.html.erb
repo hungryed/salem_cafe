@@ -2,5 +2,9 @@
   <%= f.input :first_name, label: "First Name" %>
   <%= f.input :last_name, label: "Last Name" %>
   <%= f.input :email %>
+  <%= f.input :phone_number, label: 'Phone Number' %>
+  <%= f.input :receives_texts,
+   label: 'Receive Text Notifications when order is in progress',
+    as: :boolean %>
   <%= f.submit "Update Profile" %>
 <% end %>
