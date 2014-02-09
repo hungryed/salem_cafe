@@ -22,7 +22,7 @@ $('.datepickering').pickadate();
 $(function(){
   $(document).foundation();
 
-  //$('[section-order-id]').on('click', '[data-order-complete-button="complete"]', function(event) {
+
   $('.order-actions').on('submit', '.order-complete-button', function(event) {
 
     event.preventDefault();

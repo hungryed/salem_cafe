@@ -15,6 +15,7 @@ feature 'worker modifies food' do
       fill_in 'Name', with: 'Ham'
       select food_category.name, from: 'Category'
       fill_in 'Description', with: 'Scrumptious'
+      fill_in 'Price', with: '4.44'
       click_on 'Create Food'
 
       expect(page).to have_content "Food Item added"
@@ -42,6 +43,7 @@ feature 'worker modifies food' do
       click_on 'Edit'
       fill_in 'Name', with: 'Potatoe'
       fill_in 'Description', with: 'Starch'
+      fill_in 'Price', with: '4.44'
       click_on 'Update Food'
 
       expect(page).to have_content 'Food Item updated successfully'

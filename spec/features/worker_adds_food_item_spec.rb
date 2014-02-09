@@ -13,6 +13,7 @@ feature 'worker adds a food item' do
       fill_in 'Name', with: 'Chicken Brocolli Cheddar Bake'
       attach_file 'Picture', Rails.root.join('spec/file_fixtures/burger.jpg')
       select food_category.name, from: 'Category'
+      fill_in 'Price', with: '4.44'
       click_on 'Create Food'
 
       expect(page).to have_content "Food Item added"

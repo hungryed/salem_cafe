@@ -38,4 +38,6 @@ describe Food do
   it { should have_valid(:description).when(*blanks) }
 
   it { should respond_to(:picture_url) }
+  it { should have_valid(:price).when('4.44', '0.00') }
+  it { should_not have_valid(:price).when('1.111', '71.999', '71.', '-91.00','taco') }
 end
