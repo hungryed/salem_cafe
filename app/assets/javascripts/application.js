@@ -21,6 +21,24 @@ $('.datepickering').pickadate();
 
 $(function(){
   $(document).foundation();
+    var visibleDivs = $('.section-tabs');
+    var targetWidth = 100 / visibleDivs.children('dd').length;
+    tabArray = visibleDivs.children('dd')
+    for (var i = 0; i < tabArray.length; i++) {
+      $(tabArray[i]).addClass('expand');
+    }
+    if (($('.tabs').css('width') < "625px") && window.innerWidth < 650) {
+      $('.expand').css('width', '100%');
+    } else {
+      $('.expand').css('width', targetWidth + '%');
+    }
+    $(window).resize(function(){
+      if (($('.tabs').css('width') < "625px") && window.innerWidth < 650) {
+        $('.expand').css('width', '100%');
+      } else {
+        $('.expand').css('width', targetWidth + '%');
+      }
+    })
 
 
   $('.order-actions').on('submit', '.order-complete-button', function(event) {
