@@ -34,7 +34,9 @@ feature 'worker modifies food' do
     end
 
     scenario 'modifies food with valid attributes' do
-      food = FactoryGirl.create(:food, food_category: food_category)
+      food = FactoryGirl.create(:food,
+        food_category: food_category,
+        section: food_category.section)
       worker_sign_in_as(worker)
       visit root_path
       click_on "view_sections"
@@ -50,7 +52,9 @@ feature 'worker modifies food' do
     end
 
     scenario 'modifies food with invalid attributes' do
-      food = FactoryGirl.create(:food, food_category: food_category)
+      food = FactoryGirl.create(:food,
+        food_category: food_category,
+        section: food_category.section)
       worker_sign_in_as(worker)
       visit root_path
       click_on "view_sections"

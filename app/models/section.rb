@@ -3,6 +3,8 @@ class Section < ActiveRecord::Base
     inverse_of: :section
   has_many :food_categories,
     inverse_of: :section
+  has_many :foods,
+    inverse_of: :section
   validates_presence_of :name
   validates_uniqueness_of :name
   validates_presence_of :start_time
@@ -19,9 +21,5 @@ class Section < ActiveRecord::Base
     Order.where("section_id = #{section_id} AND status != ? AND arrival_time >= ?",
         completed, Date.today.to_datetime).order(:arrival_time)
         .page(current_page).per(10)
-  end
-
-  def foods
-    food_categories.map(&:foods).flatten
   end
 end

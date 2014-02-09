@@ -15,7 +15,9 @@ feature 'user places an order' do
   context "authenticated user" do
     scenario 'authenticated user places an order' do
       food_category = FactoryGirl.create(:food_category, section: section)
-      food = FactoryGirl.create(:food, food_category: food_category)
+      food = FactoryGirl.create(:food,
+        food_category: food_category,
+        section: section)
       sign_in_as(user)
       click_on "order_food"
       click_on section.name
@@ -35,7 +37,9 @@ feature 'user places an order' do
     scenario "authenticated user supplies bad information" do
       Timecop.freeze(Time.local(2014,1,4,13,0,0))
       food_category = FactoryGirl.create(:food_category, section: section)
-      food = FactoryGirl.create(:food, food_category: food_category)
+      food = FactoryGirl.create(:food,
+        food_category: food_category,
+        section: section)
       sign_in_as(user)
       click_on "order_food"
       click_on section.name
@@ -60,7 +64,9 @@ feature 'user places an order' do
 
   scenario 'user can edit their order' do
     food_category = FactoryGirl.create(:food_category, section: section)
-    food = FactoryGirl.create(:food, food_category: food_category)
+    food = FactoryGirl.create(:food,
+      food_category: food_category,
+      section: section)
     order = FactoryGirl.create(:order, section: section, food: food)
     user = order.user
     sign_in_as(user)

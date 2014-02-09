@@ -6,16 +6,9 @@ describe Section do
   it { should_not have_valid(:name).when(nil, '') }
   it { should validate_uniqueness_of :name }
 
-  it { should respond_to :foods }
-  it "should show all foods" do
-    section = FactoryGirl.create(:section)
-    food_category = FactoryGirl.create(:food_category, section: section)
-    food = FactoryGirl.create(:food, food_category: food_category)
-
-    expect(section.foods.first).to eq(food)
-  end
   it { should have_many(:food_categories) }
   it { should have_many :orders }
+  it { should have_many :foods }
 
   it { should validate_presence_of :start_time }
   it { should have_valid(:start_time).when('11:00','7:00','12:00') }

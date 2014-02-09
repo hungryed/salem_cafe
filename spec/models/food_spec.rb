@@ -15,18 +15,6 @@ describe Food do
     expect(food2).to_not be_valid
   end
   it { should respond_to(:section) }
-  it { should_not belong_to(:section) }
-  it "should associate a section through food_category" do
-    food_category = FactoryGirl.create(:food_category)
-    food = FactoryGirl.create(:food, food_category: food_category)
-    expect(food.section).to eq(food_category.section)
-  end
-
-  it "should associate a section id through food_category" do
-    food_category = FactoryGirl.create(:food_category)
-    food = FactoryGirl.create(:food, food_category: food_category)
-    expect(food.section_id).to eq(food_category.section.id)
-  end
 
   it { should validate_presence_of :food_category }
 
@@ -38,6 +26,9 @@ describe Food do
   it { should have_valid(:description).when(*blanks) }
 
   it { should respond_to(:picture_url) }
+
   it { should have_valid(:price).when('4.44', '0.00') }
   it { should_not have_valid(:price).when('1.111', '71.999', '71.', '-91.00','taco') }
+
+  it { should belong_to :section }
 end
