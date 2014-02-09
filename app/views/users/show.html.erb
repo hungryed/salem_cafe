@@ -1,3 +1,5 @@
-<%= link_to 'Edit Profile', edit_user_path(@user), class: "button" %>
-<h1><%= @user.full_name %></h1>
-<h3><%= @user.email %></h3>
+<h1 class="center-text"><%= @user.full_name %></h1>
+<h3 class="center-text"><%= @user.email %></h3>
+<div class="small-12 medium-4 small-centered columns">
+  <%= link_to 'Edit Profile', edit_user_path(@user), class: "button expand" %>
+</div>
