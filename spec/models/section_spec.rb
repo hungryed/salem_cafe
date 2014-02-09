@@ -22,4 +22,11 @@ describe Section do
     section = Section.new(name: 'Hot Line', start_time: '11:00', end_time: '10:00')
     expect(section).to_not be_valid
   end
+
+  it "should group foods by food category" do
+    food = FactoryGirl.create(:food)
+    grouped_foods = food.section.grouped_foods
+    foods_hash = {food.food_category => [food]}
+    expect(grouped_foods).to eql(foods_hash)
+  end
 end

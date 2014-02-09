@@ -22,4 +22,8 @@ class Section < ActiveRecord::Base
         completed, Date.today.to_datetime).order(:arrival_time)
         .page(current_page).per(10)
   end
+
+  def grouped_foods
+    foods.group_by { |food| food.food_category }
+  end
 end
