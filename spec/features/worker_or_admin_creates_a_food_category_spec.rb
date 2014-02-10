@@ -55,50 +55,6 @@ feature 'worker or admin creates a food category' do
     expect_presence_error_for('food_category', :name)
   end
 
-  scenario 'worker edits category with valid attributes' do
-    food_category = FactoryGirl.create(:food_category, section: section)
-    worker_sign_in_as(worker)
-    visit root_path
-    click_on "view_sections"
-    click_on section.name
-    click_on 'Food Categories'
-    click_on "edit_food_category_#{food_category.id}"
-    fill_in 'Name', with: 'Side'
-    fill_in 'Description', with: 'Main Course'
-    click_on 'Update Food category'
-
-    expect(page).to have_content 'Category updated successfully'
-
-    click_on "view_sections"
-    click_on section.name
-    click_on 'Food Categories'
-
-    expect(page).to have_content 'Side'
-    expect(page).to_not have_content food_category.name
-  end
-
-  scenario 'worker edits category with invalid attributes' do
-    food_category = FactoryGirl.create(:food_category, section: section)
-    worker_sign_in_as(worker)
-    visit root_path
-    click_on "view_sections"
-    click_on section.name
-    click_on 'Food Categories'
-    click_on "edit_food_category_#{food_category.id}"
-    fill_in 'Name', with: ''
-    fill_in 'Description', with: ''
-    click_on 'Update Food category'
-
-    expect_presence_error_for('food_category', :name)
-    visit root_path
-    click_on "view_sections"
-    click_on section.name
-    click_on 'Food Categories'
-
-    expect(page).to_not have_content 'Side'
-    expect(page).to have_content food_category.name
-  end
-
   scenario "customer can't see category sections pages" do
     sign_in_as(user)
     visit root_path
