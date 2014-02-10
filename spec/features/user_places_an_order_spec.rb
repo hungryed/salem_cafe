@@ -35,7 +35,7 @@ feature 'user places an order' do
     end
 
     scenario "authenticated user supplies bad information" do
-      Timecop.freeze(Time.local(2014,1,4,13,0,0))
+      Timecop.freeze(Time.local(2014,1,4,13,59,59))
       food_category = FactoryGirl.create(:food_category, section: section)
       food = FactoryGirl.create(:food,
         food_category: food_category,

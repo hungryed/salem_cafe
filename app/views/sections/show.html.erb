@@ -22,15 +22,24 @@
   <% end %>
 <% end %>
 <div class="small-12 small-centered columns">
-  <h2 class="center-text">Food</h2>
-  <table class="custom-light-background">
-    <th>Food Item</th>
-    <th>Description</th>
-    <% @section.foods.each do |food| %>
-      <tr>
-        <td><%= link_to food.name, section_food_path(@section, food) %></td>
-        <td><%= food.description %></td>
-      </tr>
+  <h2 class="center-text">Food Items</h2>
+  <dl class="accordion" data-accordion>
+    <% @section.grouped_foods.each do |category, foods| %>
+      <dd>
+        <%= link_to category.name.pluralize, "#panel#{category.id}", class: "button small-12 small-centered medium-3 columns" %>
+        <div id="panel<%= category.id %>" class="content">
+          <table class="custom-light-background">
+            <th>Food Item</th>
+            <th>Description</th>
+            <% foods.each do |food| %>
+              <tr>
+                <td><%= link_to food.name, section_food_path(@section, food) %></td>
+                <td><%= food.description %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </dd>
     <% end %>
-  </table>
+  </dl>
 </div>
