@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'worker only sees non completed orders' do
-  let(:order) { FactoryGirl.create(:order) }
+  let(:order) { create_order }
   let(:worker) { FactoryGirl.create(:user, role: 'worker') }
 
   before(:each) do
@@ -20,7 +20,7 @@ feature 'worker only sees non completed orders' do
     click_on "section_#{order.section.id}"
     click_on 'Orders'
     expect(page).to have_content order.section.name
-    expect(page).to have_content order.food.name
+    expect(page).to have_content order.display_string
     expect(page).to have_content order.user.first_name
     expect(page).to have_content order.user.last_name
     expect(page).to have_content order.clean_arrival_time
@@ -30,7 +30,7 @@ feature 'worker only sees non completed orders' do
     click_on "section_#{order.section.id}"
     click_on 'Orders'
     expect(page).to have_content order.section.name
-    expect(page).to_not have_content order.food.name
+    expect(page).to_not have_content order.display_string
     expect(page).to_not have_content order.user.first_name
     expect(page).to_not have_content order.user.last_name
     expect(page).to_not have_content order.clean_arrival_time
@@ -44,7 +44,7 @@ feature 'worker only sees non completed orders' do
     click_on "section_#{order.section.id}"
     click_on 'Orders'
     expect(page).to have_content order.section.name
-    expect(page).to have_content order.food.name
+    expect(page).to have_content order.display_string
     expect(page).to have_content order.user.first_name
     expect(page).to have_content order.user.last_name
     expect(page).to have_content order.clean_arrival_time
@@ -54,7 +54,7 @@ feature 'worker only sees non completed orders' do
     click_on "section_#{order.section.id}"
     click_on 'Orders'
     expect(page).to have_content order.section.name
-    expect(page).to_not have_content order.food.name
+    expect(page).to_not have_content order.display_string
     expect(page).to_not have_content order.user.first_name
     expect(page).to_not have_content order.user.last_name
     expect(page).to_not have_content order.clean_arrival_time
@@ -68,13 +68,13 @@ feature 'worker only sees non completed orders' do
     click_on "section_#{order.section.id}"
     click_on 'Orders'
     expect(page).to have_content order.section.name
-    expect(page).to have_content order.food.name
+    expect(page).to have_content order.display_string
     expect(page).to have_content order.user.first_name
     expect(page).to have_content order.user.last_name
     expect(page).to have_content order.clean_arrival_time
     click_on 'In Progress'
     expect(page).to have_content order.section.name
-    expect(page).to have_content order.food.name
+    expect(page).to have_content order.display_string
     expect(page).to have_content order.user.first_name
     expect(page).to have_content order.user.last_name
     expect(page).to have_content order.clean_arrival_time

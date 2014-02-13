@@ -14,10 +14,10 @@ feature 'worker sees orders in the order of arrival time' do
   scenario 'worker sees orders in the correct order' do
     worker_sign_in_as(worker)
     order= FactoryGirl.create(:order)
-    order2 = FactoryGirl.create(:order, section: order.section,
-      food: order.food, arrival_time: '11:30')
-    order3 = FactoryGirl.create(:order, section: order.section,
-      food: order.food, arrival_time: '12:00')
+    order2 = create_order(section: order.section,
+      food: order.foods.first, arrival_time: '11:30')
+    order3 = create_order(section: order.section,
+      food: order.foods.first, arrival_time: '12:00')
     click_on "view_sections"
     click_on order.section.name
     click_on 'Orders'

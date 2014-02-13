@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'workers can see orders for their sections' do
-  let(:order) { FactoryGirl.create(:order) }
+  let(:order) { create_order }
   let(:user) { FactoryGirl.create(:user) }
   let(:worker) { FactoryGirl.create(:user, role: 'worker') }
 
@@ -21,7 +21,7 @@ feature 'workers can see orders for their sections' do
     click_on "section_#{order.section.id}"
     click_on 'Orders'
     expect(page).to have_content order.section.name
-    expect(page).to have_content order.food.name
+    expect(page).to have_content order.display_string
     expect(page).to have_content order.user.first_name
     expect(page).to have_content order.user.last_name
     expect(page).to have_content order.clean_arrival_time
@@ -29,14 +29,15 @@ feature 'workers can see orders for their sections' do
 
   scenario 'authenticated worker sees specific order' do
     worker_sign_in_as(worker)
-    order2 = FactoryGirl.create(:order, section: order.section,
+    order
+    order2 = create_order(section: order.section,
         arrival_time: '12:30')
     order.section.save
     click_on "view_sections"
     click_on "section_#{order.section.id}"
     click_on 'Orders'
-    expect(page).to have_content order.food.name
-    expect(page).to have_content order2.food.name
+    expect(page).to have_content order.display_string
+    expect(page).to have_content order2.display_string
     expect(page).to have_content order.user.first_name
     expect(page).to have_content order2.user.first_name
     expect(page).to have_content order.user.last_name
@@ -44,8 +45,8 @@ feature 'workers can see orders for their sections' do
     expect(page).to have_content order.clean_arrival_time
     expect(page).to have_content order2.clean_arrival_time
     click_on order.clean_arrival_time
-    expect(page).to have_content order.food.name
-    expect(page).to_not have_content order2.food.name
+    expect(page).to have_content order.display_string
+    expect(page).to_not have_content order2.display_string
     expect(page).to have_content order.user.first_name
     expect(page).to_not have_content order2.user.first_name
     expect(page).to have_content order.user.last_name
@@ -58,12 +59,12 @@ feature 'workers can see orders for their sections' do
     worker_sign_in_as(worker)
     order.section.save
     visit "/sections/#{order.section.id}/orders"
-    expect(page).to have_content order.food.name
+    expect(page).to have_content order.display_string
     visit root_path
     Timecop.freeze(Time.local(2014,1,10,6,0,0))
     visit "/sections/#{order.section.id}/orders"
     expect(page).to have_content order.section.name
-    expect(page).to_not have_content order.food.name
+    expect(page).to_not have_content order.display_string
     expect(page).to_not have_content order.user.first_name
     expect(page).to_not have_content order.user.last_name
     expect(page).to_not have_content order.clean_arrival_time

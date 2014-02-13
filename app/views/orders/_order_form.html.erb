@@ -2,7 +2,11 @@
   <h1 class="center-text"><%= section.name %></h1>
   <%= hidden_field_tag 'section_id' , section.id %>
   <h3>Step 2: Choose a Food Item</h3>
-  <%= f.input :food_id, collection: section.foods, label_method: :name %>
+  <% section.grouped_foods.each do |category, foods| %>
+    <%= f.simple_fields_for :foods do |field| %>
+      <%= field.input "food_id_#{category.id}", collection: foods, label_method: :name, label: category.name, input_html: { id: "section_#{section.id}_category_#{category.id}" }%>
+    <% end %>
+  <% end %>
   <br>
   <h3>Step 3: Pick Your Arrival Time</h3>
   <%= f.time_select :arrival_time, minute_step: 5, start_hour: section.start_time.hour , end_hour: section.end_time.hour, ampm: true %>

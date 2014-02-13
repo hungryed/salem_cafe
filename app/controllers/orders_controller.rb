@@ -30,7 +30,6 @@ class OrdersController < ApplicationController
     if @section
       @order.section = @section
     end
-
     if @order.save
       redirect_to root_path, notice: 'Order placed successfully'
     else
@@ -76,7 +75,7 @@ class OrdersController < ApplicationController
 
   protected
   def order_params
-    params.require(:order).permit(:food_id, :user_id, :arrival_time,
+    params.require(:order).permit(:foods, :user_id, :arrival_time,
       :section_id, :status)
   end
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'worker completes an order' do
-  let(:order) { FactoryGirl.create(:order) }
+  let(:order) { create_order }
   let!(:worker) { FactoryGirl.create(:user) }
 
   before(:each) do
@@ -13,7 +13,7 @@ feature 'worker completes an order' do
   end
 
   scenario 'worker completes an order' do
-    order2 = FactoryGirl.create(:order, section: order.section)
+    order2 = create_order(section: order.section)
     worker_sign_in_as(worker)
     click_on "view_sections"
     click_on order.section.name
@@ -21,7 +21,7 @@ feature 'worker completes an order' do
     click_on "completed_#{order.id}"
 
     expect(page).to have_content order2.clean_arrival_time
-    expect(page).to have_content order2.food.name
+    expect(page).to have_content order2.display_string
   end
 
   scenario 'worker completes an order after the arrival time' do

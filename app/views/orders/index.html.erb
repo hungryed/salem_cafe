@@ -14,7 +14,7 @@
       <% progress_toggle = 'in progress' %>
     <% end %>
       <div id="myModal<%= order.id %>" class="reveal-modal" data-reveal>
-        <h1><%= order.food.name %></h1>
+        <h1><%= order.display_string %></h1>
         <h2><%= order.user.full_name %></h2><br>
         <h4><%= link_to order.clean_arrival_time, section_order_path(@current_section, order) %></h4>
         <a class="close-reveal-modal">&#215;</a>
@@ -25,17 +25,10 @@
         <div class="small-12 medium-9 columns">
           <%= link_to '#',
             data: { :"reveal-id" => "myModal#{order.id}"} do %>
-            <% if order.food.picture_url %>
-              <div class="small-6 small-left medium-4 medium-left columns">
-            <% else %>
-              <div class="small-12 small-left columns">
-            <% end %>
-              <h3><%= order.food.name %></h3>
+            <div class="small-12 small-left columns">
+              <h3><%= order.display_string %></h3>
               <h4><%= order.user.full_name %></h4>
               <h4><%= order.clean_arrival_time %></h4>
-            </div>
-            <div class="small-6 small-right medium-4 medium-centered columns">
-              <%= image_tag order.food.picture_url(:thumb).to_s %>
             </div>
           <% end %>
         </div>
@@ -79,7 +72,7 @@
         <% @current_orders.each do |order| %>
           <tr>
             <td><%= order.section.name %></td>
-            <td><%= order.food.name %></td>
+            <td><%= order.display_string %></td>
             <td><%= order.clean_arrival_time %></td>
             <td><%= link_to 'Edit Order', edit_user_order_path(current_user, order) %></td>
             <td><%= link_to 'Cancel Order', user_order_path(current_user, order), method: :delete %></td>
@@ -99,7 +92,7 @@
         <% @orders.each do |order| %>
           <tr>
             <td><%= order.section.name %></td>
-            <td><%= order.food.name %></td>
+            <td><%= order.display_string %></td>
             <td><%= order.clean_arrival_time %></td>
           </tr>
         <% end %>

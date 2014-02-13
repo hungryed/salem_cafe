@@ -1,12 +1,12 @@
+<% if flash.any? %>
+  <div data class="alert-box alert small-11 small-centered columns center-text">
+    <% flash.each do |name, msg| %>
+      <%= msg %>
+    <% end %>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% end %>
 <div class="custom-front-background-color">
-  <% if flash.any? %>
-    <div data class="alert-box alert small-11 small-centered columns center-text">
-      <% flash.each do |name, msg| %>
-        <%= msg %>
-      <% end %>
-      <a href="#" class="close">&times;</a>
-    </div>
-  <% end %>
   <div class="show-for-small-only">
     <%= image_tag "http://hdwallpapercollection.com/wp-content/uploads/2013/02/yummy-sea-food-wallpaper.jpg" %>
   </div>

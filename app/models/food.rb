@@ -1,6 +1,7 @@
 class Food < ActiveRecord::Base
   has_many :orders,
-    inverse_of: :food
+    through: :order_foods
+  has_many :order_foods
   belongs_to :food_category,
     inverse_of: :foods
   validates_presence_of :name

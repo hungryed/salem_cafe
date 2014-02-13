@@ -47,6 +47,7 @@ RSpec.configure do |config|
   config.order = "random"
   config.include Authentication
   config.include ErrorHelper
+  config.include OrderHelper
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
   config.include SmsSpec::Helpers

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Food do
   let(:blanks) { [nil, ''] }
-
-  it { should have_many :orders }
+  it { should have_many :order_foods }
+  it { should have_many(:orders).through(:order_foods) }
   it { should belong_to :food_category }
   it "should validate uniqueness of food name scoped to food_category" do
     food_category = FactoryGirl.create(:food_category)
