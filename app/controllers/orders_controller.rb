@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    set_food_params
     @order = current_user.orders.build(order_params)
     @section = Section.find(params[:section_id])
     @sections = Section.all
@@ -61,13 +62,17 @@ class OrdersController < ApplicationController
           format.json { render json: @order }
         else
           format.html { redirect_to section_orders_path(@section), notice: 'There was an error.' }
-          format.json { render json: @order.errors, status: :unpocessable_entity }
+          format.json { render json: @order.errors, status: :unprocessable_entity }
         end
       end
     else
+      set_food_params
       if @order.update(order_params)
         redirect_to root_path, notice: 'Order changed successfully'
       else
+        if @order.foods.empty?
+          @order.errors.add(:food, "Food can't be blank")
+        end
         render :edit
       end
     end
@@ -75,8 +80,12 @@ class OrdersController < ApplicationController
 
   protected
   def order_params
-    params.require(:order).permit(:foods, :user_id, :arrival_time,
-      :section_id, :status)
+    params.require(:order).permit(:user_id, :arrival_time,
+      :section_id, :status, food_ids: [])
+  end
+
+  def set_food_params
+    params[:order][:food_ids] = params[:order][:foods].values
   end
 
 end

@@ -2,9 +2,9 @@
   <h1 class="center-text"><%= section.name %></h1>
   <%= hidden_field_tag 'section_id' , section.id %>
   <h3>Step 2: Choose a Food Item</h3>
-  <% section.grouped_foods.each do |category, foods| %>
-    <%= f.simple_fields_for :foods do |field| %>
-      <%= field.input "food_id_#{category.id}", collection: foods, label_method: :name, label: category.name, input_html: { id: "section_#{section.id}_category_#{category.id}" }%>
+  <%= f.simple_fields_for :foods do |field| %>
+    <% section.grouped_foods.each do |category, foods| %>
+      <%= field.input "food_id_#{category.id}", collection: foods, label_method: :name, value_method: :id, label: category.name, input_html: { id: "section_#{section.id}_category_#{category.id}" }%>
     <% end %>
   <% end %>
   <br>
