@@ -182,7 +182,13 @@ table {
   text-align: center;
   vertical-align: middle;
   line-height: rem-calc(50);
-  border:3px solid #fff
+  border:3px solid #fff;
+}
+
+.section-wrapper {
+  h3 {
+    top: 50%;
+  }
 }
 
 .custom-front-page-margin {

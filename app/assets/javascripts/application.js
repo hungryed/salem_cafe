@@ -38,8 +38,7 @@ $(function(){
       } else {
         $('.expand').css('width', targetWidth + '%');
       }
-    })
-
+    });
 
   $('.order-actions').on('submit', '.order-complete-button', function(event) {
 
@@ -79,3 +78,13 @@ $(function(){
     });
   });
 });
+
+// window.onload = function() {
+//   var sectionDivs = $('.section-wrapper')
+//   sectionsArray = sectionDivs.children('h3')
+//   for (var i = 0; i < sectionsArray.length; i++) {
+//     panelHeight = sectionsArray[i].parentNode.parentNode.parentNode.parentNode.clientHeight;
+//     sectionsArray[i].style["margin-top"] = panelHeight / 4
+//   }
+// }
+
