@@ -31,4 +31,9 @@ describe Food do
   it { should_not have_valid(:price).when('1.111', '71.999', '71.', '-91.00','taco') }
 
   it { should belong_to :section }
+
+  it "has a method to show if it is on the menu" do
+    food = FactoryGirl.create(:food)
+    expect(food.on_menu).to be_true
+  end
 end

@@ -173,7 +173,6 @@ table {
 
 .padded-front-page-button {
   @include button();
-  // margin-top: 20px;
   width: 100%;
   height: rem-calc(90);
   font-weight: bolder;
@@ -187,7 +186,7 @@ table {
 
 .section-wrapper {
   h3 {
-    top: 50%;
+
   }
 }
 
