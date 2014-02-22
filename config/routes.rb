@@ -11,9 +11,11 @@ SalemCafe::Application.routes.draw do
     resources :orders, only: [:index, :show]
     resources :food_categories
     resources :foods
+    resources :menus, except: :index
   end
-  resources :contacts, only: [:new, :create]
 
+  resources :contacts, only: [:new, :create]
+  resources :menus, only: :index
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
