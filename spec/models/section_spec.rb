@@ -29,4 +29,11 @@ describe Section do
     foods_hash = {food.food_category => [food]}
     expect(grouped_foods).to eql(foods_hash)
   end
+
+  it "should find all items on the menu and group them" do
+    food = FactoryGirl.create(:food)
+    food2 = FactoryGirl.create(:food, section: food.section, on_menu: false)
+    expect(food.section.grouped_active_foods.values.flatten).to include(food)
+    expect(food.section.grouped_active_foods.values.flatten).to_not include(food2)
+  end
 end

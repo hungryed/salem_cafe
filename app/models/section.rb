@@ -26,4 +26,8 @@ class Section < ActiveRecord::Base
   def grouped_foods
     foods.group_by { |food| food.food_category }
   end
+
+  def grouped_active_foods
+    foods.where(on_menu: true).group_by { |food| food.food_category }
+  end
 end
