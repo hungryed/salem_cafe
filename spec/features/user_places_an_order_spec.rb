@@ -40,7 +40,7 @@ feature 'user places an order' do
     end
 
     scenario "authenticated user supplies bad information" do
-      Timecop.freeze(Time.local(2014,1,4,13,59,59))
+      Timecop.travel(Time.local(2014,1,4,13,59,59))
       food_category = FactoryGirl.create(:food_category, section: section)
       food = FactoryGirl.create(:food,
         food_category: food_category,
@@ -49,7 +49,6 @@ feature 'user places an order' do
       click_on "order_food"
       click_on section.name
       select food.name, from: food_category.name
-      puts Time.now
       within '#order_arrival_time_4i' do
         select '11 AM'
       end
