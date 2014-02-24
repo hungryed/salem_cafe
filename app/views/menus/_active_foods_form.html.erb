@@ -6,7 +6,7 @@
           <%= link_to category.name, "#panel#{category.id}", class: "button small-12 small-centered medium-3 columns" %>
           <div id="panel<%= category.id %>" class="content">
             <% foods.each do |food| %>
-              <%= field.input "#{food.id}", label: food.name, as: :boolean, input_html: { id: "food_#{food.id}" }%> <!-- #, value: food.id  -->
+              <%= field.input "#{food.id}", label: food.name, as: :boolean, input_html: { id: "food_#{food.id}" }%>
             <% end %>
           </div>
           <br>
