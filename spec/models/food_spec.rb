@@ -36,4 +36,13 @@ describe Food do
     food = FactoryGirl.create(:food)
     expect(food.on_menu).to be_true
   end
+
+  it "sets food items to active with an array of id's" do
+    food1 = FactoryGirl.create(:food)
+    food2 = FactoryGirl.create(:food, section: food1.section)
+    food3 = FactoryGirl.create(:food, section: food1.section)
+    food_id_array = [food1.id, food2.id, food3.id]
+
+    expect(Food.set_food_to_active(food_id_array)).to be_true
+  end
 end

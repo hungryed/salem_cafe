@@ -13,4 +13,20 @@ class Food < ActiveRecord::Base
   validates_numericality_of :price, greater_than_or_equal_to: 0
   belongs_to :section,
     inverse_of: :foods
+
+  class << self
+    def set_food_to_active(food_id_array)
+      returns = []
+      food_id_array.each do |food_id|
+        food = Food.find(food_id)
+        food.on_menu = true
+        if food.save
+          returns << true
+        else
+          returns << false
+        end
+      end
+      !returns.include?(false)
+    end
+  end
 end
