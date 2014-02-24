@@ -1,14 +1,18 @@
 <%= simple_form_for :active_foods, url: section_menus_path(section), method: :post, html: { class: "content", id: "section-#{section.id}" } do |f| %>
   <%= f.simple_fields_for :foods do |field| %>
-    <% section.grouped_foods.each do |category, foods| %>
-      <%= link_to category.name, "#panel#{category.id}", class: "button small-12 small-centered medium-3 columns" %>
-      <div id="panel#<%= category.id %>" class="content">
-        <% foods.each do |food| %>
-          <%= field.input "#{food.id}", label: food.name, as: :boolean, input_html: { id: "food_#{food.id}" }%> <!-- #, value: food.id  -->
+    <dl class="accordion" data-accordion>
+      <% section.grouped_foods.each do |category, foods| %>
+        <dd>
+          <%= link_to category.name, "#panel#{category.id}", class: "button small-12 small-centered medium-3 columns" %>
+          <div id="panel<%= category.id %>" class="content">
+            <% foods.each do |food| %>
+              <%= field.input "#{food.id}", label: food.name, as: :boolean, input_html: { id: "food_#{food.id}" }%> <!-- #, value: food.id  -->
+            <% end %>
+          </div>
+          <br>
         <% end %>
-      </div>
-      <br>
-    <% end %>
+      </dd>
+    </dl>
   <% end %>
   <%= f.submit 'Submit', id: "submit_#{section.id}" %>
 <% end %>
