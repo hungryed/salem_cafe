@@ -3,5 +3,6 @@ FactoryGirl.define do
     association :section
     sequence(:name) { |n| "Ent#{n}ree" }
     description 'Main Course'
+    multiple false
   end
 end
