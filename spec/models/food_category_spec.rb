@@ -15,4 +15,12 @@ describe FoodCategory do
   it { should have_many :foods }
   it { should validate_presence_of :section }
   it { should belong_to :section }
+  describe "should allow customers to have multiple" do
+    it { should respond_to :multiple }
+    it "allows it to be set to multiple" do
+      food_category = FactoryGirl.create(:food_category)
+      food_category.multiple = true
+      expect(food_category.save).to be_true
+    end
+  end
 end

@@ -25,6 +25,26 @@ feature 'worker or admin creates a food category' do
     expect(page).to have_content 'Side'
   end
 
+  scenario 'worker for a section creates a category that allows multiple items' do
+    worker_sign_in_as(worker)
+    visit root_path
+    click_on "view_sections"
+    click_on section.name
+    click_on 'Food Categories'
+    click_on 'Add New Category'
+    fill_in 'Name', with: 'Side'
+    check 'Customer can have multiple in an order'
+    fill_in 'Description', with: 'Small Foods'
+    click_on 'Create Food category'
+
+    expect(page).to have_content 'Category created successfully'
+    click_on "view_sections"
+    click_on section.name
+    click_on 'Food Categories'
+
+    expect(page).to have_content 'Side'
+  end
+
   scenario 'admin adds a category to a section' do
     admin_sign_in_as(admin)
     visit root_path
