@@ -5,7 +5,6 @@ class AddMultipleOptionToFoodCategory < ActiveRecord::Migration
       category.multiple = false
       category.save
     end
-    change_column :food_categories, :multiple, :boolean, null: false
   end
 
   def down
