@@ -19,7 +19,7 @@
             <li><%= link_to "See Order Totals", order_totals_path, id: "see_order_totals", class: "padded-front-page-button"  %></li>
           <% end %>
           <% if current_user.is_employee? %>
-            <li><%= link_to "Set Menu Items", menus_path, id: "menus" %></li>
+            <li><%= link_to "Set Menu Items", menus_path, id: "menus", class: "padded-front-page-button" %></li>
           <% else %>
             <li><%= link_to 'Order Food', new_user_order_path(current_user), id: "order_food", class: "padded-front-page-button"  %></li>
             <li><%= link_to 'My Orders', user_orders_path(current_user), id: "my_orders", class: "padded-front-page-button"  %></li>
