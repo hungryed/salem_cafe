@@ -15,6 +15,7 @@ feature 'worker or admin edits a food category' do
     click_on 'Food Categories'
     click_on "edit_food_category_#{food_category.id}"
     fill_in 'Name', with: 'Side'
+    check 'Customer can have multiple in an order'
     fill_in 'Description', with: 'Main Course'
     click_on 'Update Food category'
 

@@ -16,7 +16,6 @@ class FoodCategoriesController < ApplicationController
     @food_category = FoodCategory.new(food_category_params)
     @section = Section.find(params[:section_id])
     @food_category.section = @section
-
     if @food_category.save
       redirect_to root_path, notice: 'Category created successfully'
     else
@@ -42,6 +41,6 @@ class FoodCategoriesController < ApplicationController
 
   protected
   def food_category_params
-    params.require(:food_category).permit(:name,:description)
+    params.require(:food_category).permit(:name,:description,:multiple)
   end
 end
