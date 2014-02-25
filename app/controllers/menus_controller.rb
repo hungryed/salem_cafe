@@ -10,7 +10,7 @@ class MenusController < ApplicationController
     if Food.set_food_to_active(active_foods)
       redirect_to root_path, notice: "Menu updated successfully for #{section.name}"
     else
-
+      redirect_to root_path, notice: "There was an error."
     end
   end
 
