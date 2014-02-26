@@ -2,9 +2,14 @@
   <h1 class="center-text"><%= section.name %></h1>
   <%= hidden_field_tag 'section_id' , section.id %>
   <h3>Step 2: Choose a Food Item</h3>
-  <%= f.simple_fields_for :foods do |field| %>
+  <%= f.simple_fields_for :food_items do |field| %>
     <% section.grouped_active_foods.each do |category, foods| %>
-      <%= field.input "food_id_#{category.id}", collection: foods, label_method: :name, value_method: :id, label: category.name, input_html: { id: "section_#{section.id}_category_#{category.id}" }%>
+      <h3><%= category.name %></h3>
+      <% if category.multiple %>
+        <%= field.input "food_id_#{category.id}", as: :radio_buttons, collection: foods, label_method: :name, value_method: :id, label: false, input_html: { id: "section_#{section.id}_category_#{category.id}" }%>
+      <% else %>
+        <%= field.input "food_id_#{category.id}", collection: foods, label_method: :name, value_method: :id, label: false, input_html: { id: "section_#{section.id}_category_#{category.id}" }%>
+      <% end %>
     <% end %>
   <% end %>
   <br>

@@ -85,7 +85,7 @@ class OrdersController < ApplicationController
   end
 
   def set_food_params
-    params[:order][:food_ids] = params[:order][:foods].values
+    params[:order][:food_ids] = params[:order][:food_items].values
   end
 
 end

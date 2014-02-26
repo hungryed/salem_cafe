@@ -39,6 +39,34 @@ feature 'user places an order' do
       expect(page).to have_content 'Sign Out'
     end
 
+    scenario 'authenticated user places an order with multiple from the same category' do
+      food_category = FactoryGirl.create(:food_category,
+        section: section,
+        multiple: true)
+      food = FactoryGirl.create(:food,
+        food_category: food_category,
+        section: section)
+      food2 = FactoryGirl.create(:food,
+        food_category: food_category,
+        section: section
+        )
+      sign_in_as(user)
+      click_on "order_food"
+      click_on section.name
+      choose food.name
+      choose food2.name
+      within '#order_arrival_time_4i' do
+        select '11'
+      end
+      within '#order_arrival_time_5i' do
+        select '10'
+      end
+      click_on 'Create Order'
+      expect(page).to have_content 'Order placed successfully'
+      expect(page).to have_content 'Order Food'
+      expect(page).to have_content 'Sign Out'
+    end
+
     scenario "authenticated user supplies bad information" do
       Timecop.travel(Time.local(2014,1,4,13,59,59))
       food_category = FactoryGirl.create(:food_category, section: section)
