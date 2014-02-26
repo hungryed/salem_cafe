@@ -1,4 +1,6 @@
 class MenusController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :authorize_user_is_employee
 
   def index
     @sections = Section.all
