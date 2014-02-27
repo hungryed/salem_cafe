@@ -16,10 +16,19 @@ class Food < ActiveRecord::Base
 
   class << self
     def set_food_to_active(food_id_array)
+      food_setter(food_id_array, true)
+    end
+
+    def set_food_to_inactive(food_id_array)
+      food_setter(food_id_array, false)
+    end
+
+    private
+    def food_setter(food_id_array, status)
       returns = []
       food_id_array.each do |food_id|
         food = Food.find(food_id)
-        food.on_menu = true
+        food.on_menu = status
         if food.save
           returns << true
         else
